@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Cosmoz i18next</title>
+
+	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+	<link rel="import" href="../cosmoz-i18next.html">
+</head>
+<body>
+	<template is="dom-bind" id="t">
+		<cosmoz-i18next interpolation-prefix="$" interpolation-suffix="$" id="trans" translations="{{ translations }}"></cosmoz-i18next>
+		<x-translatable></x-translatable>
+		<div id="results"></div>
+	</template>
+	<dom-module id="x-translatable">
+		<template>
+			<span>{{ _("Hello $0$", 'Patrik', 3) }}</span>
+		</template>
+		<script type="text/javascript">
+			Polymer({
+				behaviors: [
+					Cosmoz.TranslatableBehavior
+				],
+				is: 'x-translatable'
+			});
+		</script>
+	</dom-module>
+	<script type="text/javascript">
+/*global document, window */
+(function () {
+	"use strict";
+	window.addEventListener('WebComponentsReady', function () {
+		var t = document.getElementById('t'),
+			results = t.$.results,
+			log = function log(text) {
+				var el = document.createElement('div');
+				el.innerHTML = text;
+				results.appendChild(el);
+			};
+
+		log('key: ' + t.$.trans.gettext('key'));
+
+		t.translations = {
+			'Hello $0$': 'Hej $0$',
+			key: 'asdfkeasdfeeey',
+			'I have $0$ invoice': 'Jag har bara $0$ faktura',
+			'I have $0$ invoice_plural': 'Jag har faktiskt $0$ fakturor',
+			'Cancel_Cancel invoice': 'Makulera',
+			'Cancel_Cancel/Abort': 'Avbryt',
+			'Cancel $0$ invoice_Cancel invoice': 'Makulera $0$ faktura',
+			'Cancel $0$ invoice_Cancel invoice_plural': 'Makulera $0$ fakturor',
+			'Cancel $0$ action_Cancel/Abort': 'Avbryt $0$ åtgärd',
+			'Cancel $0$ action_Cancel/Abort_plural': 'Avbryt $0$ åtgärder'
+		};
+
+		log('translations loaded');
+
+		log('key: ' + t.$.trans.gettext('key'));
+		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 1));
+		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 2));
+		log('key: ' + t.$.trans.pgettext('Cancel invoice', 'Cancel'));
+		log('key: ' + t.$.trans.pgettext('Cancel/Abort', 'Cancel'));
+		log('key: ' + t.$.trans.npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1));
+		log('key: ' + t.$.trans.npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 6));
+		log('key: ' + t.$.trans.npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 1));
+		log('key: ' + t.$.trans.npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 10));
+	});
+}());
+	</script>
+</body>
+</html>
