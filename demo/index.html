@@ -17,9 +17,10 @@
 	</template>
 	<dom-module id="x-translatable">
 		<template>
-			<span>{{ _("Hello $0$", 'Patrik', 3) }}</span>
+			<span>{{ _("Hello $0$", 'Patrik', 3, t) }}</span>
 		</template>
 		<script type="text/javascript">
+			/*global Polymer, Cosmoz*/
 			Polymer({
 				behaviors: [
 					Cosmoz.TranslatableBehavior
@@ -41,7 +42,7 @@
 				results.appendChild(el);
 			};
 
-		log('key: ' + t.$.trans.gettext('key'));
+		log('key: ' + t.$.trans._('key'));
 
 		t.translations = {
 			'Hello $0$': 'Hej $0$',
@@ -58,7 +59,7 @@
 
 		log('translations loaded');
 
-		log('key: ' + t.$.trans.gettext('key'));
+		log('key: ' + t.$.trans._('key'));
 		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 1));
 		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 2));
 		log('key: ' + t.$.trans.pgettext('Cancel invoice', 'Cancel'));
