@@ -44,7 +44,7 @@ if (typeof Cosmoz === 'undefined') {
 			delete args.count;
 			return i18n.t(key, args);
 		},
-		attached: function () {
+		ready: function () {
 			translationElements.push(this);
 		},
 		detached: function () {
@@ -72,9 +72,6 @@ if (typeof Cosmoz === 'undefined') {
 	};
 
 	Polymer({
-		behaviors: [
-			Cosmoz.TranslatableBehavior
-		],
 		is: 'cosmoz-i18next',
 		properties: {
 			domain: {
