@@ -100,7 +100,15 @@ if (typeof Cosmoz === 'undefined') {
 			translations: {
 				type: Object,
 				observer: '_setTranslations'
-			}
+			},
+			keySeparator: {
+				type: String,
+				value: '.'
+			},
+  			nsSeparator: {
+  				type: String,
+  				value: ':'
+  			}
 		},
 		_setTranslations: function () {
 			i18n.addResources(this.language, this.namespace, this.translations);
@@ -112,7 +120,9 @@ if (typeof Cosmoz === 'undefined') {
 			i18n.init({
 				interpolationPrefix: this.interpolationPrefix,
 				interpolationSuffix: this.interpolationSuffix,
+				keyseparator: this.keySeparator,
 				lng: this.language,
+				nsseparator: this.nsSeparator,
 				resStore: {}
 			});
 		}
