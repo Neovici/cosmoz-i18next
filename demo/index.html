@@ -17,7 +17,20 @@
 	</template>
 	<dom-module id="x-translatable">
 		<template>
-			<span>{{ _("Hello $0$", 'Patrik', 3, t) }}</span>
+			<div>{{ _("Hello $0$", 'Patrik', t) }}</div>
+			<div>{{_('key', t)}}</div>
+
+   			<div>{{ngettext('Missing plural key $0$','Missing plural key default value $0$', 1, t)}}</div>
+   			<div>{{ngettext('Missing plural key $0$','Missing plural key default value $0$', 2, t)}}</div>
+
+  			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
+			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 2, t)}}</div>
+			<div>{{pgettext('supplier', 'Cancel invoice', t)}}</div>
+			<div>{{pgettext('customer', 'Cancel invoice', t)}}</div>
+			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1, t)}}</div>
+			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 6, t)}}</div>
+			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 1, t)}}</div>
+			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 10, t)}}</div>
 		</template>
 		<script type="text/javascript">
 			/*global Polymer, Cosmoz*/
@@ -42,15 +55,14 @@
 				results.appendChild(el);
 			};
 
-		log('key: ' + t.$.trans._('key'));
-
 		t.translations = {
 			'Hello $0$': 'Hej $0$',
 			key: 'asdfkeasdfeeey',
+			//'Missing plural key $0$': 'Translation for missing plural key $0$',
 			'I have $0$ invoice': 'Jag har bara $0$ faktura',
 			'I have $0$ invoice_plural': 'Jag har faktiskt $0$ fakturor',
-			'Cancel_Cancel invoice': 'Makulera',
-			'Cancel_Cancel/Abort': 'Avbryt',
+			'Cancel invoice_supplier': 'Cancel supplier invoice',
+			'Cancel invoice_customer': 'Cancel customer invoice',
 			'Cancel $0$ invoice_Cancel invoice': 'Makulera $0$ faktura',
 			'Cancel $0$ invoice_Cancel invoice_plural': 'Makulera $0$ fakturor',
 			'Cancel $0$ action_Cancel/Abort': 'Avbryt $0$ åtgärd',
@@ -59,15 +71,7 @@
 
 		log('translations loaded');
 
-		log('key: ' + t.$.trans._('key'));
-		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 1));
-		log('key: ' + t.$.trans.ngettext('I have $0$ invoice', 'I have $0$ invoices', 2));
-		log('key: ' + t.$.trans.pgettext('Cancel invoice', 'Cancel'));
-		log('key: ' + t.$.trans.pgettext('Cancel/Abort', 'Cancel'));
-		log('key: ' + t.$.trans.npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1));
-		log('key: ' + t.$.trans.npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 6));
-		log('key: ' + t.$.trans.npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 1));
-		log('key: ' + t.$.trans.npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 10));
+
 	});
 }());
 	</script>
