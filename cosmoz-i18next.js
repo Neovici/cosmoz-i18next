@@ -55,6 +55,7 @@ if (typeof Cosmoz === 'undefined') {
 		},
 		ngettext: function (singular, plural) {
 			var args = this._argumentsToObject(arguments, 2);
+			args.defaultValue = plural;
 			return i18n.t(singular, args);
 		},
 		pgettext: function (context, key) {
@@ -67,6 +68,7 @@ if (typeof Cosmoz === 'undefined') {
 		npgettext: function (context, singular, plural) {
 			var args = this._argumentsToObject(arguments, 3);
 			args.context = context;
+			args.defaultValue = plural;
 			return i18n.t(singular, args);
 		}
 	};
