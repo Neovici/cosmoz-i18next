@@ -19,6 +19,7 @@ if (typeof Cosmoz === 'undefined') {
 				}
 			}
 		},
+
 		_argumentsToObject: function (args, skipnum) {
 			var argsArray = Array.prototype.slice.call(args, skipnum);
 			return this._arrayToObject(argsArray);
@@ -38,7 +39,18 @@ if (typeof Cosmoz === 'undefined') {
 			});
 			return object;
 		},
+
+		_ensureInitialized: function () {
+			if (!i18n.isInitialized()) {
+				// default i18n init, to ensure translate function will return something
+				// even when there is no <i18next> element in the page.
+				i18n.init({lng: 'en', resStore: { en: {}}, fallbackLng: false});
+			}
+		},
+
 		_: function (key) {
+			this._ensureInitialized();
+
 			var args = this._argumentsToObject(arguments, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
@@ -54,11 +66,15 @@ if (typeof Cosmoz === 'undefined') {
 			}
 		},
 		ngettext: function (singular, plural) {
+			this._ensureInitialized();
+
 			var args = this._argumentsToObject(arguments, 2);
 			args.defaultValue = plural;
 			return i18n.t(singular, args);
 		},
 		pgettext: function (context, key) {
+			this._ensureInitialized();
+
 			var args = this._argumentsToObject(arguments, 2);
 			args.context = context;
 			// Don't make i18next fetch more translations
@@ -66,6 +82,8 @@ if (typeof Cosmoz === 'undefined') {
 			return i18n.t(key, args);
 		},
 		npgettext: function (context, singular, plural) {
+			this._ensureInitialized();
+
 			var args = this._argumentsToObject(arguments, 3);
 			args.context = context;
 			args.defaultValue = plural;
@@ -104,10 +122,10 @@ if (typeof Cosmoz === 'undefined') {
 				type: String,
 				value: '.'
 			},
-  			nsSeparator: {
-  				type: String,
-  				value: ':'
-  			}
+			nsSeparator: {
+				type: String,
+				value: ':'
+			}
 		},
 		_setTranslations: function () {
 			i18n.addResources(this.language, this.namespace, this.translations);
@@ -122,7 +140,8 @@ if (typeof Cosmoz === 'undefined') {
 				keyseparator: this.keySeparator,
 				lng: this.language,
 				nsseparator: this.nsSeparator,
-				resStore: {}
+				resStore: {},
+				fallbackLng: false
 			});
 		}
 	});
