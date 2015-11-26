@@ -65,13 +65,24 @@ if (typeof Cosmoz === 'undefined') {
 				translationElements.splice(i, 1);
 			}
 		},
-		ngettext: function (singular, plural) {
+		ngettext: function (singular, plural, n) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 2);
-			args.defaultValue = plural;
-			return i18n.t(singular, args);
+			var
+				args = this._argumentsToObject(arguments, 2),
+				key = singular;
+
+			if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+				args.defaultValue = plural;
+				key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + i18n.options.pluralSuffix;
+				delete args.count;
+			} else {
+				args.defaultValue = singular;
+				delete args.count;
+			}
+			return i18n.t(key, args);
 		},
+
 		pgettext: function (context, key) {
 			this._ensureInitialized();
 

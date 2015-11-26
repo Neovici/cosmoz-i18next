@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "polymer": "^1.2.0",
-    "i18next": "~1.11.0"
+    "i18next": "^1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"

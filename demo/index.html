@@ -17,20 +17,37 @@
 	</template>
 	<dom-module id="x-translatable">
 		<template>
+
 			<div>{{ _("Hello $0$", 'Patrik', t) }}</div>
 			<div>{{_('key', t)}}</div>
 
-   			<div>{{ngettext('Missing plural key $0$','Missing plural key default value $0$', 1, t)}}</div>
-   			<div>{{ngettext('Missing plural key $0$','Missing plural key default value $0$', 2, t)}}</div>
+   			<div>ngettext(missing singular key, missing plural key, 1):
+   				<span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 1, t)}}</span>
+			</div>
+   			<div>ngettext(missing singular key, missing plural key, 2):
+   				<span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 2, t)}}</span>
+			</div>
+
+   			<div>ngettext(existing singular key, missing plural key, 1):
+   				<span>{{ngettext('existing singular key $0$','missing plural key $0$', 1, t)}}</span>
+			</div>
+
+   			<div>ngettext(existing singular key, missing plural key, 2):
+   				<span>{{ngettext('existing singular key $0$','missing plural key $0$', 2, t)}}</span>
+			</div>
+
 
   			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
+
 			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 2, t)}}</div>
+
 			<div>{{pgettext('supplier', 'Cancel invoice', t)}}</div>
 			<div>{{pgettext('customer', 'Cancel invoice', t)}}</div>
 			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1, t)}}</div>
 			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 6, t)}}</div>
 			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 1, t)}}</div>
 			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 10, t)}}</div>
+
 		</template>
 		<script type="text/javascript">
 			/*global Polymer, Cosmoz*/
@@ -58,7 +75,7 @@
 		t.translations = {
 			'Hello $0$': 'Hej $0$',
 			key: 'asdfkeasdfeeey',
-			//'Missing plural key $0$': 'Translation for missing plural key $0$',
+			'existing singular key $0$': 'Translation for existing singular key $0$',
 			'I have $0$ invoice': 'Jag har bara $0$ faktura',
 			'I have $0$ invoice_plural': 'Jag har faktiskt $0$ fakturor',
 			'Cancel invoice_supplier': 'Cancel supplier invoice',
