@@ -65,20 +65,23 @@ if (typeof Cosmoz === 'undefined') {
 				translationElements.splice(i, 1);
 			}
 		},
-		ngettext: function (singular, plural, n) {
+
+		ngettext: function (singular, plural) {
 			this._ensureInitialized();
 
 			var
 				args = this._argumentsToObject(arguments, 2),
-				key = singular;
+				n = args.count,
+				key;
+
+			delete args.count;
 
 			if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
 				args.defaultValue = plural;
 				key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + i18n.options.pluralSuffix;
-				delete args.count;
 			} else {
+				key = singular;
 				args.defaultValue = singular;
-				delete args.count;
 			}
 			return i18n.t(key, args);
 		},
@@ -92,13 +95,29 @@ if (typeof Cosmoz === 'undefined') {
 			delete args.count;
 			return i18n.t(key, args);
 		},
+
 		npgettext: function (context, singular, plural) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 3);
-			args.context = context;
-			args.defaultValue = plural;
-			return i18n.t(singular, args);
+			var
+				args = this._argumentsToObject(arguments, 3),
+				n = args.count,
+				key = singular,
+				contextKeyPart = context
+					? '_' + context
+					: '';
+
+			delete args.count;
+
+			if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+				args.defaultValue = plural;
+				key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + contextKeyPart + i18n.options.pluralSuffix;
+			} else {
+				key = singular;
+				args.context = context;
+			}
+
+			return i18n.t(key, args);
 		}
 	};
 
@@ -151,8 +170,7 @@ if (typeof Cosmoz === 'undefined') {
 				keyseparator: this.keySeparator,
 				lng: this.language,
 				nsseparator: this.nsSeparator,
-				resStore: {},
-				fallbackLng: false
+				resStore: {}
 			});
 		}
 	});

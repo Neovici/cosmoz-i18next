@@ -18,8 +18,16 @@
 	<dom-module id="x-translatable">
 		<template>
 
+			<h3>Simple tests</h3>
 			<div>{{ _("Hello $0$", 'Patrik', t) }}</div>
 			<div>{{_('key', t)}}</div>
+
+			<h3>ngettext with all translations</h3>
+  			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
+			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 2, t)}}</div>
+
+
+			<h3>ngettext with missing translations</h3>
 
    			<div>ngettext(missing singular key, missing plural key, 1):
    				<span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 1, t)}}</span>
@@ -29,33 +37,99 @@
 			</div>
 
    			<div>ngettext(existing singular key, missing plural key, 1):
-   				<span>{{ngettext('existing singular key $0$','missing plural key $0$', 1, t)}}</span>
+   				<span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 1, t)}}</span>
 			</div>
 
    			<div>ngettext(existing singular key, missing plural key, 2):
-   				<span>{{ngettext('existing singular key $0$','missing plural key $0$', 2, t)}}</span>
+   				<span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 2, t)}}</span>
+			</div>
+
+			<h3>pgetttext with all translations available</h3>
+			<div>pgettext(undefinedContext, 'Cancel invoice', t)}} =&gt;
+				<span>{{pgettext(undefinedContext, 'Cancel invoice', t)}}</span>
+			</div>
+
+			<div>pgettext(nullContext, 'Cancel invoice', t)}} =&gt;
+				<span>{{pgettext(nullContext, 'Cancel invoice', t)}}</span>
+			</div>
+
+			<div>pgettext('supplier', 'Cancel invoice', t)}} =&gt;
+				<span>{{pgettext('supplier', 'Cancel invoice', t)}}</span>
 			</div>
 
 
-  			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
+			<h3>pgettex with missing context translations</h3>
+			<div>pgettext(undefinedContext, 'Approve invoice', t)}} =&gt;
+				<span>{{pgettext(undefinedContext, 'Approve invoice', t)}}</span>
+			</div>
 
-			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 2, t)}}</div>
+			<div>pgettext(nullContext, 'Approve invoice', t)}} =&gt;
+				<span>{{pgettext(nullContext, 'Approve invoice', t)}}</span>
+			</div>
 
-			<div>{{pgettext('supplier', 'Cancel invoice', t)}}</div>
-			<div>{{pgettext('customer', 'Cancel invoice', t)}}</div>
-			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1, t)}}</div>
-			<div>{{npgettext('Cancel invoice', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 6, t)}}</div>
-			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 1, t)}}</div>
-			<div>{{npgettext('Cancel/Abort', 'Cancel $0$ action', 'Cancel $0$ actions', 10, t)}}</div>
+			<div>pgettext('supplier', 'Approve invoice', t)}} =&gt;
+				<span>{{pgettext('supplier', 'Approve invoice', t)}}</span>
+			</div>
+
+			<h3>npgettext with all translations available</h3>
+
+			<div>npgettext(nullContext, 'Cancel $0$ invoice','Cancel $0$ invoices', 1, t)}} =&gt;
+				<span>{{npgettext(nullContext, 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1, t)}}</span>
+			</div>
+
+			<div>npgettext(nullContext, 'Cancel $0$ invoice','Cancel $0$ invoices', 2, t)}} =&gt;
+				<span>{{npgettext(nullContext, 'Cancel $0$ invoice', 'Cancel $0$ invoices', 2, t)}}</span>
+			</div>
+
+			<div>npgettext('supplier', 'Cancel $0$ invoice','Cancel $0$invoices', 1, t)}} =&gt;
+				<span>{{npgettext('supplier', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 1, t)}}</span>
+			</div>
+
+			<div>npgettext('supplier', 'Cancel $0$ invoice','Cancel $0$invoices', 2, t)}} =&gt;
+				<span>{{npgettext('supplier', 'Cancel $0$ invoice', 'Cancel $0$ invoices', 2, t)}}</span>
+			</div>
+
+			<h3>npgettext with missing plural/context translations</h3>
+
+			<div>npgettext(nullContext, 'Reject $0$ invoice','Reject $0$ invoices', 1, t)}} =&gt;
+				<span>{{npgettext(nullContext, 'Reject $0$ invoice', 'Reject $0$ invoices', 1, t)}}</span>
+			</div>
+
+			<div>npgettext(nullContext, 'Reject $0$ invoice','Reject $0$ invoices', 2, t)}} =&gt;
+				<span>{{npgettext(nullContext, 'Reject $0$ invoice', 'Reject $0$ invoices', 2, t)}}</span>
+			</div>
+
+			<div>npgettext('supplier', 'Reject $0$ invoice','Reject $0$ invoices', 1, t)}} =&gt;
+				<span>{{npgettext('supplier', 'Reject $0$ invoice', 'Reject $0$ invoices', 1, t)}}</span>
+			</div>
+
+			<div>npgettext('supplier', 'Reject $0$ invoice','Reject $0$ invoices', 2, t)}} =&gt;
+				<span>{{npgettext('supplier', 'Reject $0$ invoice', 'Reject $0$ invoices', 2, t)}}</span>
+			</div>
+
 
 		</template>
 		<script type="text/javascript">
 			/*global Polymer, Cosmoz*/
 			Polymer({
 				behaviors: [
-					Cosmoz.TranslatableBehavior
+					Cosmoz.TranslatableBehavior,
 				],
-				is: 'x-translatable'
+
+				is: 'x-translatable',
+
+				properties: {
+					nullContext: {
+						type: String,
+						value: null
+					},
+					undefinedContext: {
+						type: String,
+						value: undefined
+					}
+				}
+
+
 			});
 		</script>
 	</dom-module>
@@ -75,15 +149,17 @@
 		t.translations = {
 			'Hello $0$': 'Hej $0$',
 			key: 'asdfkeasdfeeey',
-			'existing singular key $0$': 'Translation for existing singular key $0$',
-			'I have $0$ invoice': 'Jag har bara $0$ faktura',
-			'I have $0$ invoice_plural': 'Jag har faktiskt $0$ fakturor',
-			'Cancel invoice_supplier': 'Cancel supplier invoice',
-			'Cancel invoice_customer': 'Cancel customer invoice',
-			'Cancel $0$ invoice_Cancel invoice': 'Makulera $0$ faktura',
-			'Cancel $0$ invoice_Cancel invoice_plural': 'Makulera $0$ fakturor',
-			'Cancel $0$ action_Cancel/Abort': 'Avbryt $0$ åtgärd',
-			'Cancel $0$ action_Cancel/Abort_plural': 'Avbryt $0$ åtgärder'
+			'existing singular key $0$': '(singular) existing singular key $0$',
+			'I have $0$ invoice': '(singular) Jag har bara $0$ faktura',
+			'I have $0$ invoice_plural': '(plural) Jag har faktiskt $0$ fakturor',
+			'Approve invoice': '(singular) Approuver la facture',
+			'Cancel invoice': '(singular) Annuler la facture',
+			'Cancel invoice_supplier': '(supplier) Annuler la facture fournisseur',
+			'Cancel $0$ invoice': '(no context, singular) Cancel this invoice',
+			'Cancel $0$ invoice_plural': '(no context, plural)  Cancel these $0$ invoices',
+			'Cancel $0$ invoice_supplier': '(supplier)  Cancel this supplier invoice',
+			'Cancel $0$ invoice_supplier_plural': '(supplier,plural)  Cancel these $0$ supplier invoices',
+			'Reject $0$ invoice': '(no context, singular)  Reject invoice'
 		};
 
 		log('translations loaded');
