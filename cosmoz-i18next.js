@@ -161,9 +161,10 @@ if (typeof Cosmoz === 'undefined') {
 			}
 		},
 		_setTranslations: function () {
+			i18n.removeResourceBundle(this.language, this.namespace);
 			i18n.addResources(this.language, this.namespace, this.translations);
 			translationElements.forEach(function (element) {
-				element.t = {};
+				element.set('t', {});
 			});
 		},
 		ready: function () {
