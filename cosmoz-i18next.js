@@ -11,8 +11,9 @@ if (typeof Cosmoz === 'undefined') {
 	var translationElements = [];
 
 	/**
-	 * @polymerBehavior
-	 */
+	 * @polymerBehavior Cosmoz.TranslatableBehavior
+	 * @demo demo/index.html
+	**/
 	Cosmoz.TranslatableBehavior = {
 		properties: {
 			t: {
@@ -51,6 +52,9 @@ if (typeof Cosmoz === 'undefined') {
 			}
 		},
 
+		/**
+		 * Convenience method for `gettext`
+		 */
 		_: function (key) {
 			this._ensureInitialized();
 
@@ -69,6 +73,45 @@ if (typeof Cosmoz === 'undefined') {
 			}
 		},
 
+		/**
+		 * #### Basic functionality
+		 * ##### `_(string, t)`
+		 *     <div>{{ _(‘My translation’, t) }}</div>
+		 *
+		 * #### Interpolation
+		 * ##### `_(string, [args], t)`
+		 *     <div>{{ _(‘Hello {0}’, user.name, t) }}</div>
+		 *
+		 * @param {String} key String to translate
+		 * @param {Object} t Behavior t object
+		 * @return {String} Translated string
+		 */
+		gettext: function (key) {
+			this._ensureInitialized();
+
+			var args = this._argumentsToObject(arguments, 1);
+			// Don't make i18next fetch more translations
+			delete args.count;
+			return i18n.t(key, args);
+		},
+
+		/**
+		 * #### Plurals
+		 * ##### `ngettext(singular, plural, count, t)`
+		 *     <div>{{ ngettext(‘My translation’,
+		 *     		‘My translations’, count, t) }}</div>
+		 *
+		 * #### Plurals with interpolation
+		 * ##### `ngettext(singular, plural, [count and other args], t)`
+		 *     <div>{{ ngettext(‘My translation for “{1}”’,
+		 *         	‘My {0} translations for “{1}”’,
+		 *         	count, ‘hello’, t) }}</div>
+		 * _The first number-argument found will be used as ‘count’ to decide plural._
+		 *
+		 * @param {String} singular Singular string
+		 * @param {String} plural Plural string
+		 * @return {String} Translated string
+		 */
 		ngettext: function (singular, plural) {
 			this._ensureInitialized();
 
@@ -89,6 +132,21 @@ if (typeof Cosmoz === 'undefined') {
 			return i18n.t(key, args);
 		},
 
+		/**
+		 * #### Context
+		 * ##### `pgettext(context, ‘text’, t)`
+		 *     <div>{{ pgettext(‘Cancel Invoice’,
+		 *     		‘Cancel’, t) }}</div>
+		 *
+		 * #### Context with interpolation
+		 * ##### `pgettext(context, ‘text’, [args], t)`
+		 *     <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,
+		 *     		document.type, t) }}</div>
+		 *
+		 * @param {String} context Context string
+		 * @param {String} key String to translate
+		 * @return {String} Translated string
+		 */
 		pgettext: function (context, key) {
 			this._ensureInitialized();
 
@@ -99,6 +157,26 @@ if (typeof Cosmoz === 'undefined') {
 			return i18n.t(key, args);
 		},
 
+		/**
+		 * #### Plurals and context
+		 * ##### `npgettext(context, singular, plural, count, t)`
+		 *     <div>{{ npgettext('Cancel invoice',
+		 *     		‘My cancellation’,
+		 *     		‘My {0} cancellations’,
+		 *     		count, t) }}</div>
+		 *
+		 * #### Plurals and context with interpolation
+		 * ##### `npgettext(context, singular, plural, count, t)`
+		 *     <div>{{ npgettext('Cancel invoice',
+		 *     		‘My {1} cancellation’,
+		 *     		‘My {0} {1} cancellations’,
+		 *     		count, document.type, t) }}</div>
+		 *
+		 * @param {String} context Context string
+		 * @param {String} singular Singular string
+		 * @param {String} plural Plural string
+		 * @return {String} Translated string
+		 */
 		npgettext: function (context, singular, plural) {
 			this._ensureInitialized();
 
