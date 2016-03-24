@@ -10,10 +10,7 @@ if (typeof Cosmoz === 'undefined') {
 
 	var translationElements = [];
 
-	/**
-	 * @polymerBehavior Cosmoz.TranslatableBehavior
-	 * @demo demo/index.html
-	**/
+	/** @polymerBehavior Cosmoz.TranslatableBehavior */
 	Cosmoz.TranslatableBehavior = {
 		properties: {
 			t: {
