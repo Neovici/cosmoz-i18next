@@ -1,16 +1,14 @@
 /*global Cosmoz, i18n, Polymer */
 
-if (typeof Cosmoz === 'undefined') {
-	var Cosmoz = {};
-}
+window.Cosmoz = window.Cosmoz || {};
 
 (function () {
 
-	"use strict";
+	'use strict';
 
 	var translationElements = [];
 
-	/** @polymerBehavior Cosmoz.TranslatableBehavior */
+	/** @polymerBehavior */
 	Cosmoz.TranslatableBehavior = {
 		properties: {
 			t: {
@@ -25,12 +23,13 @@ if (typeof Cosmoz === 'undefined') {
 			var argsArray = Array.prototype.slice.call(args, skipnum);
 			return this._arrayToObject(argsArray);
 		},
+
 		_arrayToObject: function (array) {
 			var ctx = this,
 				object = {};
 
 			array.forEach(function (item, index) {
-				if (object.count === undefined && typeof item === "number") {
+				if (object.count === undefined && typeof item === 'number') {
 					object.count = item;
 				}
 				// Don't send the 't' kicker to i18n for arguments
@@ -60,9 +59,11 @@ if (typeof Cosmoz === 'undefined') {
 			delete args.count;
 			return i18n.t(key, args);
 		},
+
 		ready: function () {
 			translationElements.push(this);
 		},
+
 		detached: function () {
 			var i = translationElements.indexOf(this);
 			if (i >= 0) {
@@ -204,7 +205,7 @@ if (typeof Cosmoz === 'undefined') {
 		properties: {
 			domain: {
 				type: String,
-				value: "messages"
+				value: 'messages'
 			},
 			interpolationPrefix: {
 				type: String,
@@ -216,7 +217,7 @@ if (typeof Cosmoz === 'undefined') {
 			},
 			language: {
 				type: String,
-				value: "en"
+				value: 'en'
 			},
 			namespace: {
 				type: String,
