@@ -50,6 +50,8 @@ window.Cosmoz = window.Cosmoz || {};
 
 		/**
 		 * Convenience method for `gettext`
+		 * @param {String} key Translation key
+		 * @returns {String} Translated text
 		 */
 		_: function (key) {
 			this._ensureInitialized();
