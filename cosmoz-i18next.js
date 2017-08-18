@@ -1,4 +1,4 @@
-/*global Cosmoz, i18n, Polymer */
+/*global i18n */
 
 window.Cosmoz = window.Cosmoz || {};
 
