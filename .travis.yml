@@ -9,6 +9,12 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - .eslintcache
+    - $HOME/.cache/bower
 before_script:
   - yarn run lint
 script:
