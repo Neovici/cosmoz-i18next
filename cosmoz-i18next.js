@@ -62,7 +62,7 @@ window.Cosmoz = window.Cosmoz || {};
 			return i18n.t(key, args);
 		},
 
-		ready: function () {
+		created: function () {
 			translationElements.push(this);
 		},
 
