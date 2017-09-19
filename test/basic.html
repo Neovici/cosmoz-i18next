@@ -1,71 +1,82 @@
 <!doctype html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-	<title>cosmoz-i18next basic test</title>
-	<script type="text/javascript">
-	var logStore = [],
-		errorStore = [],
-		warnStore = [],
-		oldLogFunc = console.log,
-		oldErrorFunc = console.error,
-		oldWarnFunc = console.warn;
+	<head>
+		<title>cosmoz-i18next-basic</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-	console.log = function (logMessage) {
-		logStore.push(logMessage);
-		oldLogFunc.apply(console, arguments);
-	};
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../../test-fixture/test-fixture-mocha.js"></script>
 
-	console.error = function (errorMessage) {
-		errorStore.push(errorMessage);
-		oldErrorFunc.apply(console, arguments);
-	};
+		<link rel="import" href="../../test-fixture/test-fixture.html">
+		<link rel="import" href="../../iron-test-helpers/iron-test-helpers.html">
+		<link rel="import" href="../cosmoz-i18next.html">
+		<link rel="import" href="../cosmoz-t.html">
+	</head>
+	<body>
+		<test-fixture id="basic">
+			<template>
+				<cosmoz-i18next></cosmoz-i18next>
+			</template>
+		</test-fixture>
 
-	console.warn = function (warnMessage) {
-		warnStore.push(warnMessage);
-		oldWarnFunc.apply(console, arguments);
-	};
+		<test-fixture id="basic-t">
+			<template>
+				<cosmoz-t></cosmoz-t>
+			</template>
+		</test-fixture>
 
-	</script>
-	<script src="../../web-component-tester/browser.js"></script>
-	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script>
 
-	<link rel="import" href="../cosmoz-i18next.html">
-</head>
-<body>
-	<test-fixture id="cosmoz-i18next-fixture">
-		<template>
-			<cosmoz-i18next></cosmoz-i18next>
-		</template>
-	</test-fixture>
+			suite('basic', function () {
+				var element;
 
-	<script>
-	/*global logStore, errorStore, warnStore */
-	(function () {
-		'use strict';
+				setup(function (done){
+					element = fixture('basic');
+					done();;
+				});
 
-		suite('<cosmoz-i18next>', function () {
-			var myElement;
+				test('instantiates a cosmoz-i18next element', function(done){
+					assert.equal(element.is, 'cosmoz-i18next');
+					done();
+				});
 
-			setup(function () {
-				myElement = fixture('cosmoz-i18next-fixture');
+				test('sets defaults', function(done){
+					assert.equal(element.domain, 'messages');
+					assert.equal(element.interpolationPrefix, '__');
+					assert.equal(element.interpolationSuffix, '__');
+					assert.equal(element.language, 'en');
+					assert.equal(element.namespace, 'translation');
+					assert.equal(element.keySeparator, '.');
+					assert.equal(element.nsSeparator, ':');
+
+					done();
+				});
 			});
 
-			test('No console logs should exist', function () {
-				assert.equal(logStore.length, 0, 'Log messages: ' + logStore.join(' | '));
-			});
+			suite('basic-t', function () {
+				var element;
 
-			test('No console warn should exist', function () {
-				assert.equal(warnStore.length, 0, 'Warn messages: ' + warnStore.join(' | '));
-			});
+				setup(function (done){
+					element = fixture('basic-t');
+					done();;
+				});
 
-			test('No console errors should exist', function () {
-				assert.equal(errorStore.length, 0, 'Error messages: ' + errorStore.join(' | '));
-			});
-		});
-	}());
+				test('instantiates a cosmoz-t element', function(done){
+					assert.equal(element.is, 'cosmoz-t');
+					done();
+				});
 
-	</script>
-</body>
+				test('translates key', function(done){
+					assert.isFunction(element._);
+					flush(function(){
+						assert.isTrue(i18n.isInitialized());
+						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe' );
+						done();
+					},90);
+				});
+			});
+		</script>
+	</body>
 </html>
