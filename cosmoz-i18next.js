@@ -1,10 +1,7 @@
-/*global i18n */
-
-window.Cosmoz = window.Cosmoz || {};
-
 (function () {
-
 	'use strict';
+
+	window.Cosmoz = window.Cosmoz || {};
 
 	var translationElements = [];
 
