@@ -34,15 +34,15 @@
 
 				setup(function (done){
 					element = fixture('basic');
-					done();;
-				});
+					done();
+	});
 
-				test('instantiates a cosmoz-i18next element', function(done){
+				test('instantiates a cosmoz-i18next element', function (done){
 					assert.equal(element.is, 'cosmoz-i18next');
 					done();
 				});
 
-				test('sets defaults', function(done){
+				test('sets defaults', function (done){
 					assert.equal(element.domain, 'messages');
 					assert.equal(element.interpolationPrefix, '__');
 					assert.equal(element.interpolationSuffix, '__');
@@ -60,21 +60,21 @@
 
 				setup(function (done){
 					element = fixture('basic-t');
-					done();;
+					done();
 				});
 
-				test('instantiates a cosmoz-t element', function(done){
+				test('instantiates a cosmoz-t element', function (done){
 					assert.equal(element.is, 'cosmoz-t');
 					done();
 				});
 
-				test('translates key', function(done){
+				test('translates key', function (done){
 					assert.isFunction(element._);
-					flush(function(){
+					flush(function (){
 						assert.isTrue(i18n.isInitialized());
-						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe' );
+						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe');
 						done();
-					},90);
+					}, 90);
 				});
 			});
 		</script>
