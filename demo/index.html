@@ -8,6 +8,7 @@
 
 	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
+	<link rel="import" href="../../neon-animation/web-animations.html">
 	<link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
 	<link rel="import" href="../../paper-listbox/paper-listbox.html">
 	<link rel="import" href="../../paper-item/paper-item.html">
@@ -16,22 +17,25 @@
 	<link rel="import" href="../cosmoz-t.html">
 </head>
 <body>
-	<template is="dom-bind" id="t">
-		<cosmoz-i18next interpolation-prefix="$" interpolation-suffix="$" id="trans" translations="[[ getTranslations(locale) ]]"></cosmoz-i18next>
-		<paper-dropdown-menu label="Locale" value="{{ locale }}">
-			<paper-listbox class="dropdown-content" selected="0">
-				<paper-item>en</paper-item>
-				<paper-item>fr</paper-item>
-				<paper-item>sv</paper-item>
-			</paper-listbox>
-		</paper-dropdown-menu>
+	<dom-bind id="t">
+		<template is="dom-bind">
+			<cosmoz-i18next interpolation-prefix="$" interpolation-suffix="$" id="trans" translations="[[ getTranslations(locale) ]]"></cosmoz-i18next>
+			<paper-dropdown-menu label="Locale" value="{{ locale }}">
+				<paper-listbox class="dropdown-content" slot="dropdown-content" selected="0">
+					<paper-item>en</paper-item>
+					<paper-item>fr</paper-item>
+					<paper-item>sv</paper-item>
+				</paper-listbox>
+			</paper-dropdown-menu>
 
-		<h2>cosmoz-t</h2>
-		<cosmoz-t input="key"></cosmoz-t>
+			<h2>cosmoz-t</h2>
+			<cosmoz-t input="key"></cosmoz-t>
 
-		<h2>x-translatable</h2>
-		<x-translatable></x-translatable>
-	</template>
+			<h2>x-translatable</h2>
+			<x-translatable></x-translatable>
+		</template>
+	</dom-bind>
+
 	<dom-module id="x-translatable">
 		<template>
 			<h3>Simple tests</h3>
@@ -39,25 +43,25 @@
 			<div>{{_('key', t)}}</div>
 
 			<h3>ngettext with all translations</h3>
-  			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
+				<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 1, t)}}</div>
 			<div>{{ngettext('I have $0$ invoice', 'I have $0$ invoices', 2, t)}}</div>
 
 
 			<h3>ngettext with missing translations</h3>
 
-   			<div>ngettext(missing singular key, missing plural key, 1):
-   				<span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 1, t)}}</span>
+				 <div>ngettext(missing singular key, missing plural key, 1):
+					 <span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 1, t)}}</span>
 			</div>
-   			<div>ngettext(missing singular key, missing plural key, 2):
-   				<span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 2, t)}}</span>
-			</div>
-
-   			<div>ngettext(existing singular key, missing plural key, 1):
-   				<span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 1, t)}}</span>
+				 <div>ngettext(missing singular key, missing plural key, 2):
+					 <span>{{ngettext('Missing singular key $0$','Missing plural key $0$', 2, t)}}</span>
 			</div>
 
-   			<div>ngettext(existing singular key, missing plural key, 2):
-   				<span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 2, t)}}</span>
+				 <div>ngettext(existing singular key, missing plural key, 1):
+					 <span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 1, t)}}</span>
+			</div>
+
+				 <div>ngettext(existing singular key, missing plural key, 2):
+					 <span>{{ngettext('existing singular key $0$','missing plural key default value $0$', 2, t)}}</span>
 			</div>
 
 			<h3>pgetttext with all translations available</h3>
@@ -122,8 +126,8 @@
 			<div>npgettext('supplier', 'Reject $0$ invoice','Reject $0$ invoices', 2, t)}} =&gt;
 				<span>{{npgettext('supplier', 'Reject $0$ invoice', 'Reject $0$ invoices', 2, t)}}</span>
 			</div>
-
 		</template>
+
 		<script type="text/javascript">
 			Polymer({
 				behaviors: [
@@ -146,38 +150,40 @@
 		</script>
 	</dom-module>
 	<script type="text/javascript">
-	/*global document */
 	(function () {
 		'use strict';
-		var t = document.getElementById('t'),
-			translations = {
-				en: {
-					key: 'asdfkeasdfeeey',
-					'existing singular key $0$': '(singular) existing singular key $0$',
-					'Approve invoice': '(singular) Approve invoice',
-					'Cancel invoice': '(singular) Cancel invoice',
-					'Cancel invoice_supplier': '(supplier) Cancel supplier invoice',
-					'Cancel $0$ invoice': '(no context, singular) Cancel this invoice',
-					'Cancel $0$ invoice_plural': '(no context, plural)  Cancel these $0$ invoices',
-					'Cancel $0$ invoice_supplier': '(supplier)  Cancel this supplier invoice',
-					'Cancel $0$ invoice_supplier_plural': '(supplier, plural)  Cancel these $0$ supplier invoices',
-					'Reject $0$ invoice': '(no context, singular)  Reject invoice'
-				},
-				fr: {
-					'Approve invoice': '(singular) Approuver la facture',
-					'Cancel invoice': '(singular) Annuler la facture',
-					'Cancel invoice_supplier': '(supplier) Annuler la facture fournisseur',
-				},
-				sv: {
-					'Hello $0$': 'Hej $0$',
-					'I have $0$ invoice': '(singular) Jag har bara $0$ faktura',
-					'I have $0$ invoice_plural': '(plural) Jag har faktiskt $0$ fakturor',
-				}
-			};
 
-		t.getTranslations = function (locale) {
-			return translations[locale];
-		};
+		window.addEventListener('WebComponentsReady', function () {
+			var t = document.getElementById('t'),
+				translations = {
+					en: {
+						key: 'asdfkeasdfeeey',
+						'existing singular key $0$': '(singular) existing singular key $0$',
+						'Approve invoice': '(singular) Approve invoice',
+						'Cancel invoice': '(singular) Cancel invoice',
+						'Cancel invoice_supplier': '(supplier) Cancel supplier invoice',
+						'Cancel $0$ invoice': '(no context, singular) Cancel this invoice',
+						'Cancel $0$ invoice_plural': '(no context, plural)  Cancel these $0$ invoices',
+						'Cancel $0$ invoice_supplier': '(supplier)  Cancel this supplier invoice',
+						'Cancel $0$ invoice_supplier_plural': '(supplier, plural)  Cancel these $0$ supplier invoices',
+						'Reject $0$ invoice': '(no context, singular)  Reject invoice'
+					},
+					fr: {
+						'Approve invoice': '(singular) Approuver la facture',
+						'Cancel invoice': '(singular) Annuler la facture',
+						'Cancel invoice_supplier': '(supplier) Annuler la facture fournisseur',
+					},
+					sv: {
+						'Hello $0$': 'Hej $0$',
+						'I have $0$ invoice': '(singular) Jag har bara $0$ faktura',
+						'I have $0$ invoice_plural': '(plural) Jag har faktiskt $0$ fakturor',
+					}
+				};
+			t = !t.set ? t.firstElementChild : t;
+			t.getTranslations = function (locale) {
+				return translations[locale];
+			};
+		});
 	}());
 	</script>
 </body>
