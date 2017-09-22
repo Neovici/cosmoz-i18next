@@ -2,13 +2,16 @@
 	"env": {
 		"mocha": true
 	},
+	"plugins": ["mocha"],
 	"globals": {
-		"suite": false,
-		"test": false,
-		"assert": false,
-		"fixture": false,
 		"a11ySuite": false,
+		"assert": false,
+		"chai": true,
+		"expect": false,
+		"fixture": false,
+		"flush": false,
 		"MockInteractions": false,
+		"sinon": true,
 		"WCT": false
 	}
 }

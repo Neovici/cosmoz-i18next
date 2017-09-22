@@ -1,0 +1,1485 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "`<cosmoz-i18next>` is a translation component based on i18next\n\n### Usage\n\nUse the component as a singleton to interface the i18next library.\n\n    <cosmoz-i18next translations=\"{{ translations }}\"></cosmoz-i18next>",
+      "summary": "",
+      "path": "cosmoz-i18next.js",
+      "properties": [
+        {
+          "name": "domain",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 204,
+              "column": 3
+            },
+            "end": {
+              "line": 207,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"messages\""
+        },
+        {
+          "name": "interpolationPrefix",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 208,
+              "column": 3
+            },
+            "end": {
+              "line": 211,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"__\""
+        },
+        {
+          "name": "interpolationSuffix",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 212,
+              "column": 3
+            },
+            "end": {
+              "line": 215,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"__\""
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 216,
+              "column": 3
+            },
+            "end": {
+              "line": 219,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"en\""
+        },
+        {
+          "name": "namespace",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 220,
+              "column": 3
+            },
+            "end": {
+              "line": 223,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"translation\""
+        },
+        {
+          "name": "translations",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 224,
+              "column": 3
+            },
+            "end": {
+              "line": 227,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_setTranslations\""
+            }
+          }
+        },
+        {
+          "name": "keySeparator",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 228,
+              "column": 3
+            },
+            "end": {
+              "line": 231,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\""
+        },
+        {
+          "name": "nsSeparator",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 232,
+              "column": 3
+            },
+            "end": {
+              "line": 235,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\""
+        }
+      ],
+      "methods": [
+        {
+          "name": "_setTranslations",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 237,
+              "column": 2
+            },
+            "end": {
+              "line": 243,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 244,
+              "column": 2
+            },
+            "end": {
+              "line": 253,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 201,
+          "column": 9
+        },
+        "end": {
+          "line": 254,
+          "column": 2
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "domain",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 204,
+              "column": 3
+            },
+            "end": {
+              "line": 207,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "interpolation-prefix",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 208,
+              "column": 3
+            },
+            "end": {
+              "line": 211,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "interpolation-suffix",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 212,
+              "column": 3
+            },
+            "end": {
+              "line": 215,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "language",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 216,
+              "column": 3
+            },
+            "end": {
+              "line": 219,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "namespace",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 220,
+              "column": 3
+            },
+            "end": {
+              "line": 223,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "translations",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 224,
+              "column": 3
+            },
+            "end": {
+              "line": 227,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        },
+        {
+          "name": "key-separator",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 228,
+              "column": 3
+            },
+            "end": {
+              "line": 231,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "ns-separator",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 232,
+              "column": 3
+            },
+            "end": {
+              "line": 235,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "cosmoz-i18next"
+    },
+    {
+      "description": "",
+      "summary": "",
+      "path": "cosmoz-t.html",
+      "properties": [
+        {
+          "name": "t",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 10,
+              "column": 3
+            },
+            "end": {
+              "line": 15,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{}",
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "input",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 9,
+              "column": 5
+            },
+            "end": {
+              "line": 11,
+              "column": 6
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "_argumentsToObject",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 18,
+              "column": 2
+            },
+            "end": {
+              "line": 21,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "args"
+            },
+            {
+              "name": "skipnum"
+            }
+          ],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_arrayToObject",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 23,
+              "column": 2
+            },
+            "end": {
+              "line": 37,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "array"
+            }
+          ],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_ensureInitialized",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 39,
+              "column": 2
+            },
+            "end": {
+              "line": 45,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_",
+          "description": "Convenience method for `gettext`",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 52,
+              "column": 2
+            },
+            "end": {
+              "line": 59,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Translation key"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated text"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "created",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 61,
+              "column": 2
+            },
+            "end": {
+              "line": 63,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 65,
+              "column": 2
+            },
+            "end": {
+              "line": 70,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "gettext",
+          "description": "#### Basic functionality\n##### `_(string, t)`\n    <div>{{ _(‘My translation’, t) }}</div>\n\n#### Interpolation\n##### `_(string, [args], t)`\n    <div>{{ _(‘Hello {0}’, user.name, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 85,
+              "column": 2
+            },
+            "end": {
+              "line": 92,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "String to translate"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "ngettext",
+          "description": "#### Plurals\n##### `ngettext(singular, plural, count, t)`\n    <div>{{ ngettext(‘My translation’,\n    \t\t‘My translations’, count, t) }}</div>\n\n#### Plurals with interpolation\n##### `ngettext(singular, plural, [count and other args], t)`\n    <div>{{ ngettext(‘My translation for “{1}”’,\n        \t‘My {0} translations for “{1}”’,\n        \tcount, ‘hello’, t) }}</div>\n_The first number-argument found will be used as ‘count’ to decide plural._",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 111,
+              "column": 2
+            },
+            "end": {
+              "line": 129,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "singular",
+              "type": "String",
+              "description": "Singular string"
+            },
+            {
+              "name": "plural",
+              "type": "String",
+              "description": "Plural string"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "pgettext",
+          "description": "#### Context\n##### `pgettext(context, ‘text’, t)`\n    <div>{{ pgettext(‘Cancel Invoice’,\n    \t\t‘Cancel’, t) }}</div>\n\n#### Context with interpolation\n##### `pgettext(context, ‘text’, [args], t)`\n    <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,\n    \t\tdocument.type, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 146,
+              "column": 2
+            },
+            "end": {
+              "line": 154,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "context",
+              "type": "String",
+              "description": "Context string"
+            },
+            {
+              "name": "key",
+              "type": "String",
+              "description": "String to translate"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "npgettext",
+          "description": "#### Plurals and context\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My cancellation’,\n    \t\t‘My {0} cancellations’,\n    \t\tcount, t) }}</div>\n\n#### Plurals and context with interpolation\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My {1} cancellation’,\n    \t\t‘My {0} {1} cancellations’,\n    \t\tcount, document.type, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 176,
+              "column": 2
+            },
+            "end": {
+              "line": 198,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "context",
+              "type": "String",
+              "description": "Context string"
+            },
+            {
+              "name": "singular",
+              "type": "String",
+              "description": "Singular string"
+            },
+            {
+              "name": "plural",
+              "type": "String",
+              "description": "Plural string"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 6,
+          "column": 11
+        },
+        "end": {
+          "line": 16,
+          "column": 4
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "t",
+          "description": "",
+          "sourceRange": {
+            "file": "cosmoz-i18next.js",
+            "start": {
+              "line": 10,
+              "column": 3
+            },
+            "end": {
+              "line": 15,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "Object",
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "input",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 9,
+              "column": 5
+            },
+            "end": {
+              "line": 11,
+              "column": 6
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "cosmoz-t"
+    },
+    {
+      "description": "",
+      "summary": "",
+      "path": "demo/index.html",
+      "properties": [
+        {
+          "name": "t",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 10,
+              "column": 3
+            },
+            "end": {
+              "line": 15,
+              "column": 4
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{}",
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "nullContext",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 139,
+              "column": 5
+            },
+            "end": {
+              "line": 142,
+              "column": 6
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "null"
+        },
+        {
+          "name": "undefinedContext",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 143,
+              "column": 5
+            },
+            "end": {
+              "line": 146,
+              "column": 6
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "_argumentsToObject",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 18,
+              "column": 2
+            },
+            "end": {
+              "line": 21,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "args"
+            },
+            {
+              "name": "skipnum"
+            }
+          ],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_arrayToObject",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 23,
+              "column": 2
+            },
+            "end": {
+              "line": 37,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "array"
+            }
+          ],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_ensureInitialized",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 39,
+              "column": 2
+            },
+            "end": {
+              "line": 45,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "_",
+          "description": "Convenience method for `gettext`",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 52,
+              "column": 2
+            },
+            "end": {
+              "line": 59,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Translation key"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated text"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "created",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 61,
+              "column": 2
+            },
+            "end": {
+              "line": 63,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 65,
+              "column": 2
+            },
+            "end": {
+              "line": 70,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "gettext",
+          "description": "#### Basic functionality\n##### `_(string, t)`\n    <div>{{ _(‘My translation’, t) }}</div>\n\n#### Interpolation\n##### `_(string, [args], t)`\n    <div>{{ _(‘Hello {0}’, user.name, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 85,
+              "column": 2
+            },
+            "end": {
+              "line": 92,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "String to translate"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "ngettext",
+          "description": "#### Plurals\n##### `ngettext(singular, plural, count, t)`\n    <div>{{ ngettext(‘My translation’,\n    \t\t‘My translations’, count, t) }}</div>\n\n#### Plurals with interpolation\n##### `ngettext(singular, plural, [count and other args], t)`\n    <div>{{ ngettext(‘My translation for “{1}”’,\n        \t‘My {0} translations for “{1}”’,\n        \tcount, ‘hello’, t) }}</div>\n_The first number-argument found will be used as ‘count’ to decide plural._",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 111,
+              "column": 2
+            },
+            "end": {
+              "line": 129,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "singular",
+              "type": "String",
+              "description": "Singular string"
+            },
+            {
+              "name": "plural",
+              "type": "String",
+              "description": "Plural string"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "pgettext",
+          "description": "#### Context\n##### `pgettext(context, ‘text’, t)`\n    <div>{{ pgettext(‘Cancel Invoice’,\n    \t\t‘Cancel’, t) }}</div>\n\n#### Context with interpolation\n##### `pgettext(context, ‘text’, [args], t)`\n    <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,\n    \t\tdocument.type, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 146,
+              "column": 2
+            },
+            "end": {
+              "line": 154,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "context",
+              "type": "String",
+              "description": "Context string"
+            },
+            {
+              "name": "key",
+              "type": "String",
+              "description": "String to translate"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "npgettext",
+          "description": "#### Plurals and context\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My cancellation’,\n    \t\t‘My {0} cancellations’,\n    \t\tcount, t) }}</div>\n\n#### Plurals and context with interpolation\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My {1} cancellation’,\n    \t\t‘My {0} {1} cancellations’,\n    \t\tcount, document.type, t) }}</div>",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 176,
+              "column": 2
+            },
+            "end": {
+              "line": 198,
+              "column": 3
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "context",
+              "type": "String",
+              "description": "Context string"
+            },
+            {
+              "name": "singular",
+              "type": "String",
+              "description": "Singular string"
+            },
+            {
+              "name": "plural",
+              "type": "String",
+              "description": "Plural string"
+            }
+          ],
+          "return": {
+            "type": "String",
+            "desc": "Translated string"
+          },
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 131,
+          "column": 11
+        },
+        "end": {
+          "line": 148,
+          "column": 4
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "t",
+          "description": "",
+          "sourceRange": {
+            "file": "../cosmoz-i18next.js",
+            "start": {
+              "line": 10,
+              "column": 3
+            },
+            "end": {
+              "line": 15,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "type": "Object",
+          "inheritedFrom": "Cosmoz.TranslatableBehavior"
+        },
+        {
+          "name": "null-context",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 139,
+              "column": 5
+            },
+            "end": {
+              "line": 142,
+              "column": 6
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "undefined-context",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 143,
+              "column": 5
+            },
+            "end": {
+              "line": 146,
+              "column": 6
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "x-translatable"
+    }
+  ],
+  "metadata": {
+    "polymer": {
+      "behaviors": [
+        {
+          "description": "",
+          "summary": "",
+          "path": "cosmoz-i18next.js",
+          "properties": [
+            {
+              "name": "t",
+              "type": "Object",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 10,
+                  "column": 3
+                },
+                "end": {
+                  "line": 15,
+                  "column": 4
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "{}"
+            }
+          ],
+          "methods": [
+            {
+              "name": "_argumentsToObject",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "args"
+                },
+                {
+                  "name": "skipnum"
+                }
+              ]
+            },
+            {
+              "name": "_arrayToObject",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 23,
+                  "column": 2
+                },
+                "end": {
+                  "line": 37,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "array"
+                }
+              ]
+            },
+            {
+              "name": "_ensureInitialized",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 39,
+                  "column": 2
+                },
+                "end": {
+                  "line": 45,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_",
+              "description": "Convenience method for `gettext`",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 52,
+                  "column": 2
+                },
+                "end": {
+                  "line": 59,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "key",
+                  "type": "String",
+                  "description": "Translation key"
+                }
+              ],
+              "return": {
+                "type": "String",
+                "desc": "Translated text"
+              }
+            },
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 61,
+                  "column": 2
+                },
+                "end": {
+                  "line": 63,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "detached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 65,
+                  "column": 2
+                },
+                "end": {
+                  "line": 70,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "gettext",
+              "description": "#### Basic functionality\n##### `_(string, t)`\n    <div>{{ _(‘My translation’, t) }}</div>\n\n#### Interpolation\n##### `_(string, [args], t)`\n    <div>{{ _(‘Hello {0}’, user.name, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 85,
+                  "column": 2
+                },
+                "end": {
+                  "line": 92,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "key",
+                  "type": "String",
+                  "description": "String to translate"
+                }
+              ],
+              "return": {
+                "type": "String",
+                "desc": "Translated string"
+              }
+            },
+            {
+              "name": "ngettext",
+              "description": "#### Plurals\n##### `ngettext(singular, plural, count, t)`\n    <div>{{ ngettext(‘My translation’,\n    \t\t‘My translations’, count, t) }}</div>\n\n#### Plurals with interpolation\n##### `ngettext(singular, plural, [count and other args], t)`\n    <div>{{ ngettext(‘My translation for “{1}”’,\n        \t‘My {0} translations for “{1}”’,\n        \tcount, ‘hello’, t) }}</div>\n_The first number-argument found will be used as ‘count’ to decide plural._",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 111,
+                  "column": 2
+                },
+                "end": {
+                  "line": 129,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "singular",
+                  "type": "String",
+                  "description": "Singular string"
+                },
+                {
+                  "name": "plural",
+                  "type": "String",
+                  "description": "Plural string"
+                }
+              ],
+              "return": {
+                "type": "String",
+                "desc": "Translated string"
+              }
+            },
+            {
+              "name": "pgettext",
+              "description": "#### Context\n##### `pgettext(context, ‘text’, t)`\n    <div>{{ pgettext(‘Cancel Invoice’,\n    \t\t‘Cancel’, t) }}</div>\n\n#### Context with interpolation\n##### `pgettext(context, ‘text’, [args], t)`\n    <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,\n    \t\tdocument.type, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 146,
+                  "column": 2
+                },
+                "end": {
+                  "line": 154,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "context",
+                  "type": "String",
+                  "description": "Context string"
+                },
+                {
+                  "name": "key",
+                  "type": "String",
+                  "description": "String to translate"
+                }
+              ],
+              "return": {
+                "type": "String",
+                "desc": "Translated string"
+              }
+            },
+            {
+              "name": "npgettext",
+              "description": "#### Plurals and context\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My cancellation’,\n    \t\t‘My {0} cancellations’,\n    \t\tcount, t) }}</div>\n\n#### Plurals and context with interpolation\n##### `npgettext(context, singular, plural, count, t)`\n    <div>{{ npgettext('Cancel invoice',\n    \t\t‘My {1} cancellation’,\n    \t\t‘My {0} {1} cancellations’,\n    \t\tcount, document.type, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 176,
+                  "column": 2
+                },
+                "end": {
+                  "line": 198,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "context",
+                  "type": "String",
+                  "description": "Context string"
+                },
+                {
+                  "name": "singular",
+                  "type": "String",
+                  "description": "Singular string"
+                },
+                {
+                  "name": "plural",
+                  "type": "String",
+                  "description": "Plural string"
+                }
+              ],
+              "return": {
+                "type": "String",
+                "desc": "Translated string"
+              }
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 8,
+              "column": 1
+            },
+            "end": {
+              "line": 199,
+              "column": 3
+            }
+          },
+          "privacy": "public",
+          "name": "Cosmoz.TranslatableBehavior",
+          "attributes": [
+            {
+              "name": "t",
+              "description": "",
+              "sourceRange": {
+                "start": {
+                  "line": 10,
+                  "column": 3
+                },
+                "end": {
+                  "line": 15,
+                  "column": 4
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            }
+          ],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        }
+      ]
+    }
+  }
+}
