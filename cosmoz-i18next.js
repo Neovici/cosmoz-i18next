@@ -59,7 +59,7 @@
 			return i18n.t(key, args);
 		},
 
-		created: function () {
+		attached: function () {
 			translationElements.push(this);
 		},
 
