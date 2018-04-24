@@ -4,8 +4,10 @@
 	window.Cosmoz = window.Cosmoz || {};
 
 	var translationElements = [];
-
-	/** @polymerBehavior */
+	/**
+	 * Translation behavior using the I18next internationalization framework.
+	 *
+	 * @polymerBehavior */
 	Cosmoz.TranslatableBehavior = {
 		properties: {
 			t: {
@@ -46,9 +48,10 @@
 		},
 
 		/**
-		 * Convenience method for `gettext`
-		 * @param {String} key Translation key
-		 * @returns {String} Translated text
+		 * Convenience method for gettext. Translate a text.
+		 *
+		 * @param {string} key Translation key.
+		 * @returns {string} Translated text.
 		 */
 		_: function (key) {
 			this._ensureInitialized();
@@ -71,17 +74,19 @@
 		},
 
 		/**
-		 * #### Basic functionality
-		 * ##### `_(string, t)`
-		 *     <div>{{ _(‘My translation’, t) }}</div>
+		 * Translate a text.
 		 *
-		 * #### Interpolation
-		 * ##### `_(string, [args], t)`
-		 *     <div>{{ _(‘Hello {0}’, user.name, t) }}</div>
+		 * Example of basic translation:
+		 * `_(string, t)`
+		 *   <div>{{ _(‘My translation’, t) }}</div>
 		 *
-		 * @param {String} key String to translate
-		 * @param {Object} t Behavior t object
-		 * @return {String} Translated string
+		 * Example of basic translation with interpolation:
+		 * `_(string, [args], t)`
+		 *   <div>{{ _(‘Hello {0}’, user.name, t) }}</div>
+		 *
+		 * @param {string} key Text to translate.
+		 * @param {object} t Behavior t object.
+		 * @return {string} Translated text.
 		 */
 		gettext: function (key) {
 			this._ensureInitialized();
@@ -93,21 +98,23 @@
 		},
 
 		/**
-		 * #### Plurals
-		 * ##### `ngettext(singular, plural, count, t)`
-		 *     <div>{{ ngettext(‘My translation’,
-		 *     		‘My translations’, count, t) }}</div>
+		 * Plural version of gettext. Translate a text to the current locale
+		 * using the first numeric argument after the two first arguments to
+		 * determine if output should be singular or plural.
 		 *
-		 * #### Plurals with interpolation
-		 * ##### `ngettext(singular, plural, [count and other args], t)`
-		 *     <div>{{ ngettext(‘My translation for “{1}”’,
-		 *         	‘My {0} translations for “{1}”’,
-		 *         	count, ‘hello’, t) }}</div>
-		 * _The first number-argument found will be used as ‘count’ to decide plural._
+		 * Example of translation in singular or plural:
+		 * `ngettext(singular, plural, count, t)`
+		 * <div>{{ ngettext(‘My translation’,
+		 *   ‘My translations’, count, t) }}</div>
 		 *
-		 * @param {String} singular Singular string
-		 * @param {String} plural Plural string
-		 * @return {String} Translated string
+		 * Example of translation in singular or plural with interpolation:
+		 * `ngettext(singular, plural, [count and other args], t)`
+		 * <div>{{ ngettext(‘My translation for “{1}”’,
+		 *   ‘My {0} translations for “{1}”’, count, ‘hello’, t) }}</div>
+		 *
+		 * @param {string} singular Singular text variant.
+		 * @param {string} plural Plural text variant.
+		 * @return {string} Translated text.
 		 */
 		ngettext: function (singular, plural) {
 			this._ensureInitialized();
@@ -130,19 +137,20 @@
 		},
 
 		/**
-		 * #### Context
-		 * ##### `pgettext(context, ‘text’, t)`
-		 *     <div>{{ pgettext(‘Cancel Invoice’,
-		 *     		‘Cancel’, t) }}</div>
+		 * Translate a text using a specific context.
 		 *
-		 * #### Context with interpolation
-		 * ##### `pgettext(context, ‘text’, [args], t)`
-		 *     <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,
-		 *     		document.type, t) }}</div>
+		 * Example of translation with context:
+		 * `pgettext(context, ‘text’, t)`
+		 *   <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel’, t) }}</div>
 		 *
-		 * @param {String} context Context string
-		 * @param {String} key String to translate
-		 * @return {String} Translated string
+		 * Example of translation including context with interpolation:
+		 * `pgettext(context, ‘text’, [args], t)`
+		 * <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,
+		 *   document.type, t) }}</div>
+		 *
+		 * @param {string} context Context text.
+		 * @param {string} key Text to translate.
+		 * @return {string} Translated text.
 		 */
 		pgettext: function (context, key) {
 			this._ensureInitialized();
@@ -155,24 +163,23 @@
 		},
 
 		/**
-		 * #### Plurals and context
-		 * ##### `npgettext(context, singular, plural, count, t)`
-		 *     <div>{{ npgettext('Cancel invoice',
-		 *     		‘My cancellation’,
-		 *     		‘My {0} cancellations’,
-		 *     		count, t) }}</div>
+		 * Translate a text in singular or plural with a specific context.
 		 *
-		 * #### Plurals and context with interpolation
-		 * ##### `npgettext(context, singular, plural, count, t)`
-		 *     <div>{{ npgettext('Cancel invoice',
-		 *     		‘My {1} cancellation’,
-		 *     		‘My {0} {1} cancellations’,
-		 *     		count, document.type, t) }}</div>
+		 * Example of translation in singular or plural with context:
+		 * `npgettext(context, singular, plural, count, t)`
+		 * <div>{{ npgettext('Cancel invoice', ‘My cancellation’,
+		 *   ‘My {0} cancellations’, count, t) }}</div>
 		 *
-		 * @param {String} context Context string
-		 * @param {String} singular Singular string
-		 * @param {String} plural Plural string
-		 * @return {String} Translated string
+		 * Example of translation in singular or plural with context and
+		 * interpolation:
+		 * `npgettext(context, singular, plural, count, t)`
+		 * <div>{{ npgettext('Cancel invoice', ‘My {1} cancellation’,
+		 *   ‘My {0} {1} cancellations’, count, document.type, t) }}</div>
+		 *
+		 * @param {string} context Context text.
+		 * @param {string} singular Singular text variant.
+		 * @param {string} plural Plural text variant.
+		 * @return {string} Translated text.
 		 */
 		npgettext: function (context, singular, plural) {
 			this._ensureInitialized();
