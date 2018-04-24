@@ -48,7 +48,7 @@
 		},
 
 		/**
-		 * Convenience method for gettext. Translate a text.
+		 * Convenience method for gettext. Translates a text.
 		 *
 		 * @param {string} key Translation key.
 		 * @returns {string} Translated text.
@@ -74,7 +74,7 @@
 		},
 
 		/**
-		 * Translate a text.
+		 * Translates a text.
 		 *
 		 * Example of basic translation:
 		 * `_(string, t)`
@@ -98,7 +98,7 @@
 		},
 
 		/**
-		 * Plural version of gettext. Translate a text to the current locale
+		 * Plural version of gettext. Translates a text to the current locale
 		 * using the first numeric argument after the two first arguments to
 		 * determine if output should be singular or plural.
 		 *
@@ -137,7 +137,7 @@
 		},
 
 		/**
-		 * Translate a text using a specific context.
+		 * Translates a text using a specific context.
 		 *
 		 * Example of translation with context:
 		 * `pgettext(context, ‘text’, t)`
@@ -163,7 +163,7 @@
 		},
 
 		/**
-		 * Translate a text in singular or plural with a specific context.
+		 * Translates a text in singular or plural with a specific context.
 		 *
 		 * Example of translation in singular or plural with context:
 		 * `npgettext(context, singular, plural, count, t)`
