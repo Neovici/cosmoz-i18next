@@ -66,7 +66,7 @@
 		 * @param {string} key Translation key.
 		 * @returns {string} Translated text.
 		 */
-		_(key) {
+		_: function (key) {
 			this._ensureInitialized();
 
 			const args = this._argumentsToObject(arguments, 1);
