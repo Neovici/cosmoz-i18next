@@ -4,27 +4,17 @@
 	<template>[[ _(input, t) ]]</template>
 	<script>
 		(function () {
-			class CosmozT extends Polymer.mixinBehaviors([Cosmoz.TranslatableBehavior], Polymer.Element) {
-				/**
-				 * Get component name.
-				 * @returns {string} Name.
-				 */
-				static get is() {
-					return 'cosmoz-t';
-				}
-				/**
-				 * Get component properties.
-				 * @returns {object} Properties.
-				 */
-				static get properties() {
-					return {
-						input: {
-							type: String
-						}
-					};
-				}
-			}
-			customElements.define(CosmozT.is, CosmozT);
+			Polymer({
+				is: 'cosmoz-t',
+				properties: {
+					input: {
+						type: String
+					}
+				},
+				behaviors: [
+					Cosmoz.TranslatableBehavior
+				]
+			});
 		}());
 	</script>
 </dom-module>
