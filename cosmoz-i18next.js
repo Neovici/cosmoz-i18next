@@ -3,7 +3,7 @@
 
 	window.Cosmoz = window.Cosmoz || {};
 
-	var translationElements = [];
+	const translationElements = [];
 	/**
 	 * Translation behavior using the I18next internationalization framework.
 	 *
@@ -12,22 +12,33 @@
 		properties: {
 			t: {
 				type: Object,
-				value: function () {
+				value() {
 					return {};
 				}
 			}
 		},
-
-		_argumentsToObject: function (args, skipnum) {
-			var argsArray = Array.prototype.slice.call(args, skipnum);
+		/**
+		 * Convert function arguments array to an object.
+		 *
+		 * @param {array} args Arguments.
+		 * @param {number} skipnum Argument index to skip.
+		 * @return {object} Arguments.
+		 */
+		_argumentsToObject(args, skipnum) {
+			const argsArray = Array.prototype.slice.call(args, skipnum);
 			return this._arrayToObject(argsArray);
 		},
-
-		_arrayToObject: function (array) {
-			var ctx = this,
+		/**
+		 * Convert an array to an object.
+		 *
+		 * @param {array} array Array.
+		 * @returns {object} Object.
+		 */
+		_arrayToObject(array) {
+			const ctx = this,
 				object = {};
 
-			array.forEach(function (item, index) {
+			array.forEach((item, index) => {
 				if (object.count === undefined && typeof item === 'number') {
 					object.count = item;
 				}
@@ -38,41 +49,50 @@
 			});
 			return object;
 		},
-
-		_ensureInitialized: function () {
+		/** Ensure that i18n is initialized.
+		 *
+		 * @returns {void}
+		 */
+		_ensureInitialized() {
 			if (!i18n.isInitialized()) {
 				// default i18n init, to ensure translate function will return something
 				// even when there is no <i18next> element in the page.
 				i18n.init({lng: 'en', resStore: { en: {}}, fallbackLng: false});
 			}
 		},
-
 		/**
 		 * Convenience method for gettext. Translates a text.
 		 *
 		 * @param {string} key Translation key.
 		 * @returns {string} Translated text.
 		 */
-		_: function (key) {
+		_(key) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 1);
+			const args = this._argumentsToObject(arguments, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
 		},
-
-		attached: function () {
+		/**
+		 * Add component to translation elements.
+		 *
+		 * @returns {void}
+		 */
+		attached() {
 			translationElements.push(this);
 		},
-
-		detached: function () {
-			var i = translationElements.indexOf(this);
+		/**
+		 * Remove component from translation elements.
+		 *
+		 * @returns {void}
+		 */
+		detached() {
+			const i = translationElements.indexOf(this);
 			if (i >= 0) {
 				translationElements.splice(i, 1);
 			}
 		},
-
 		/**
 		 * Translates a text.
 		 *
@@ -88,15 +108,13 @@
 		 * @param {object} t Behavior t object.
 		 * @return {string} Translated text.
 		 */
-		gettext: function (key) {
+		gettext(key) {
 			this._ensureInitialized();
-
-			var args = this._argumentsToObject(arguments, 1);
+			const args = this._argumentsToObject(arguments, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
 		},
-
 		/**
 		 * Plural version of gettext. Translates a text to the current locale
 		 * using the first numeric argument after the two first arguments to
@@ -116,13 +134,13 @@
 		 * @param {string} plural Plural text variant.
 		 * @return {string} Translated text.
 		 */
-		ngettext: function (singular, plural) {
+		ngettext(singular, plural) {
 			this._ensureInitialized();
 
-			var
+			const
 				args = this._argumentsToObject(arguments, 2),
-				n = args.count,
-				key;
+				n = args.count;
+			let key;
 
 			delete args.count;
 
@@ -135,7 +153,6 @@
 			}
 			return i18n.t(key, args);
 		},
-
 		/**
 		 * Translates a text using a specific context.
 		 *
@@ -152,16 +169,15 @@
 		 * @param {string} key Text to translate.
 		 * @return {string} Translated text.
 		 */
-		pgettext: function (context, key) {
+		pgettext(context, key) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 2);
+			const args = this._argumentsToObject(arguments, 2);
 			args.context = context;
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
 		},
-
 		/**
 		 * Translates a text in singular or plural with a specific context.
 		 *
@@ -181,17 +197,16 @@
 		 * @param {string} plural Plural text variant.
 		 * @return {string} Translated text.
 		 */
-		npgettext: function (context, singular, plural) {
+		npgettext(context, singular, plural) {
 			this._ensureInitialized();
 
-			var
+			const
 				args = this._argumentsToObject(arguments, 3),
 				n = args.count,
-				key = singular,
 				contextKeyPart = context
 					? '_' + context
 					: '';
-
+			let key = singular;
 			delete args.count;
 
 			if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
@@ -206,50 +221,72 @@
 		}
 	};
 
-	Polymer({
-		is: 'cosmoz-i18next',
-		properties: {
-			domain: {
-				type: String,
-				value: 'messages'
-			},
-			interpolationPrefix: {
-				type: String,
-				value: '__'
-			},
-			interpolationSuffix: {
-				type: String,
-				value: '__'
-			},
-			language: {
-				type: String,
-				value: 'en'
-			},
-			namespace: {
-				type: String,
-				value: 'translation'
-			},
-			translations: {
-				type: Object,
-				observer: '_setTranslations'
-			},
-			keySeparator: {
-				type: String,
-				value: '.'
-			},
-			nsSeparator: {
-				type: String,
-				value: ':'
-			}
-		},
-		_setTranslations: function () {
+	class Cosmozi18next extends Polymer.Element {
+		/**
+		 * Get component name.
+		 *
+		 * @returns {string} Name.
+		 */
+		static get is() {
+			return 'cosmoz-i18next';
+		}
+		/**
+		 * Get component properties.
+		 *
+		 * @returns {string} Name.
+		 */
+		static get properties() {
+			return {
+				domain: {
+					type: String,
+					value: 'messages'
+				},
+				interpolationPrefix: {
+					type: String,
+					value: '__'
+				},
+				interpolationSuffix: {
+					type: String,
+					value: '__'
+				},
+				language: {
+					type: String,
+					value: 'en'
+				},
+				namespace: {
+					type: String,
+					value: 'translation'
+				},
+				translations: {
+					type: Object,
+					observer: '_setTranslations'
+				},
+				keySeparator: {
+					type: String,
+					value: '.'
+				},
+				nsSeparator: {
+					type: String,
+					value: ':'
+				}
+			};
+		}
+		/**
+		 * Remove resource bundle, add resources and setup translation elements.
+		 *
+		 * @returns {void}
+		 */
+		_setTranslations() {
 			i18n.removeResourceBundle(this.language, this.namespace);
 			i18n.addResources(this.language, this.namespace, this.translations);
-			translationElements.forEach(function (element) {
-				element.set('t', {});
-			});
-		},
-		ready: function () {
+			translationElements.forEach(element => element.set('t', {}));
+		}
+		/**
+		 * Initialize i18n.
+		 *
+		 * @returns {void}
+		 */
+		ready() {
 			i18n.init({
 				interpolationPrefix: this.interpolationPrefix,
 				interpolationSuffix: this.interpolationSuffix,
@@ -259,5 +296,6 @@
 				resStore: {}
 			});
 		}
-	});
+	}
+	customElements.define(Cosmozi18next.is, Cosmozi18next);
 }());
