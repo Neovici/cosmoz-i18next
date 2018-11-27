@@ -3,7 +3,7 @@
 
 	window.Cosmoz = window.Cosmoz || {};
 
-	var translationElements = [];
+	const translationElements = [];
 	/**
 	 * Translation behavior using the I18next internationalization framework.
 	 *
@@ -56,7 +56,7 @@
 		_: function (key) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 1);
+			const args = this._argumentsToObject(arguments, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
