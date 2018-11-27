@@ -53,7 +53,7 @@
 		 * @param {string} key Translation key.
 		 * @returns {string} Translated text.
 		 */
-		_: function (key) {
+		_(key) {
 			this._ensureInitialized();
 
 			const args = this._argumentsToObject(arguments, 1);
