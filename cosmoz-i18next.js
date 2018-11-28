@@ -54,12 +54,7 @@
 		 * @returns {string} Translated text.
 		 */
 		_(key) {
-			this._ensureInitialized();
-
-			const args = this._argumentsToObject(arguments, 1);
-			// Don't make i18next fetch more translations
-			delete args.count;
-			return i18n.t(key, args);
+			return this.gettextgeneric(key, arguments);
 		},
 
 		attached() {
@@ -89,9 +84,18 @@
 		 * @return {string} Translated text.
 		 */
 		gettext(key) {
+			return this.gettextgeneric(key, arguments);
+		},
+		/**
+		 * Generic handler for text translation
+		 *
+		 * @param {string} key Text to translate.
+		 * @param {array} callerArgs Arguments from the calling function.
+		 * @return {string} Translated text.
+		 */
+		gettextgeneric(key, callerArgs) {
 			this._ensureInitialized();
-
-			const args = this._argumentsToObject(arguments, 1);
+			const args = this._argumentsToObject(callerArgs, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
