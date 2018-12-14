@@ -3,7 +3,7 @@
 
 	window.Cosmoz = window.Cosmoz || {};
 
-	var translationElements = [];
+	const translationElements = [];
 	/**
 	 * Translation behavior using the I18next internationalization framework.
 	 *
@@ -12,22 +12,22 @@
 		properties: {
 			t: {
 				type: Object,
-				value: function () {
+				value() {
 					return {};
 				}
 			}
 		},
 
-		_argumentsToObject: function (args, skipnum) {
-			var argsArray = Array.prototype.slice.call(args, skipnum);
+		_argumentsToObject(args, skipnum) {
+			const argsArray = Array.prototype.slice.call(args, skipnum);
 			return this._arrayToObject(argsArray);
 		},
 
-		_arrayToObject: function (array) {
-			var ctx = this,
+		_arrayToObject(array) {
+			const ctx = this,
 				object = {};
 
-			array.forEach(function (item, index) {
+			array.forEach((item, index) => {
 				if (object.count === undefined && typeof item === 'number') {
 					object.count = item;
 				}
@@ -39,7 +39,7 @@
 			return object;
 		},
 
-		_ensureInitialized: function () {
+		_ensureInitialized() {
 			if (!i18n.isInitialized()) {
 				// default i18n init, to ensure translate function will return something
 				// even when there is no <i18next> element in the page.
@@ -53,21 +53,16 @@
 		 * @param {string} key Translation key.
 		 * @returns {string} Translated text.
 		 */
-		_: function (key) {
-			this._ensureInitialized();
-
-			var args = this._argumentsToObject(arguments, 1);
-			// Don't make i18next fetch more translations
-			delete args.count;
-			return i18n.t(key, args);
+		_(key) {
+			return this.gettextgeneric(key, arguments);
 		},
 
-		attached: function () {
+		attached() {
 			translationElements.push(this);
 		},
 
-		detached: function () {
-			var i = translationElements.indexOf(this);
+		detached() {
+			const i = translationElements.indexOf(this);
 			if (i >= 0) {
 				translationElements.splice(i, 1);
 			}
@@ -88,10 +83,19 @@
 		 * @param {object} t Behavior t object.
 		 * @return {string} Translated text.
 		 */
-		gettext: function (key) {
+		gettext(key) {
+			return this.gettextgeneric(key, arguments);
+		},
+		/**
+		 * Generic handler for text translation
+		 *
+		 * @param {string} key Text to translate.
+		 * @param {array} callerArgs Arguments from the calling function.
+		 * @return {string} Translated text.
+		 */
+		gettextgeneric(key, callerArgs) {
 			this._ensureInitialized();
-
-			var args = this._argumentsToObject(arguments, 1);
+			const args = this._argumentsToObject(callerArgs, 1);
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
@@ -116,13 +120,13 @@
 		 * @param {string} plural Plural text variant.
 		 * @return {string} Translated text.
 		 */
-		ngettext: function (singular, plural) {
+		ngettext(singular, plural) {
 			this._ensureInitialized();
 
-			var
+			const
 				args = this._argumentsToObject(arguments, 2),
-				n = args.count,
-				key;
+				n = args.count;
+			let key;
 
 			delete args.count;
 
@@ -152,10 +156,10 @@
 		 * @param {string} key Text to translate.
 		 * @return {string} Translated text.
 		 */
-		pgettext: function (context, key) {
+		pgettext(context, key) {
 			this._ensureInitialized();
 
-			var args = this._argumentsToObject(arguments, 2);
+			const args = this._argumentsToObject(arguments, 2);
 			args.context = context;
 			// Don't make i18next fetch more translations
 			delete args.count;
@@ -181,16 +185,16 @@
 		 * @param {string} plural Plural text variant.
 		 * @return {string} Translated text.
 		 */
-		npgettext: function (context, singular, plural) {
+		npgettext(context, singular, plural) {
 			this._ensureInitialized();
 
-			var
+			const
 				args = this._argumentsToObject(arguments, 3),
 				n = args.count,
-				key = singular,
 				contextKeyPart = context
 					? '_' + context
 					: '';
+			let key = singular;
 
 			delete args.count;
 
@@ -242,14 +246,12 @@
 				value: ':'
 			}
 		},
-		_setTranslations: function () {
+		_setTranslations() {
 			i18n.removeResourceBundle(this.language, this.namespace);
 			i18n.addResources(this.language, this.namespace, this.translations);
-			translationElements.forEach(function (element) {
-				element.set('t', {});
-			});
+			translationElements.forEach(element => element.set('t', {}));
 		},
-		ready: function () {
+		ready() {
 			i18n.init({
 				interpolationPrefix: this.interpolationPrefix,
 				interpolationSuffix: this.interpolationSuffix,

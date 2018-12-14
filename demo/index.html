@@ -153,8 +153,8 @@
 	(function () {
 		'use strict';
 
-		window.addEventListener('WebComponentsReady', function () {
-			var t = document.getElementById('t'),
+		window.addEventListener('WebComponentsReady', () => {
+			let t = document.getElementById('t'),
 				translations = {
 					en: {
 						key: 'asdfkeasdfeeey',
@@ -180,7 +180,7 @@
 					}
 				};
 			t = !t.set ? t.firstElementChild : t;
-			t.getTranslations = function (locale) {
+			t.getTranslations = (locale) => {
 				return translations[locale];
 			};
 		});
