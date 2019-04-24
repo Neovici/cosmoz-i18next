@@ -211,7 +211,7 @@
 	};
 
 	Cosmoz.Mixins = Cosmoz.Mixins || {};
-	Cosmoz.Mixins.translatable = baseClass => class extends Polymer.mixinBehaviors([Cosmoz.TranslatableBehavior], baseClass);
+	Cosmoz.Mixins.translatable = baseClass => Polymer.mixinBehaviors([Cosmoz.TranslatableBehavior], baseClass);
 
 	Polymer({
 		is: 'cosmoz-i18next',
