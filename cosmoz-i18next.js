@@ -1,3 +1,4 @@
+/*global Polymer */
 (function () {
 	'use strict';
 
@@ -213,47 +214,51 @@
 	Cosmoz.Mixins = Cosmoz.Mixins || {};
 	Cosmoz.Mixins.translatable = baseClass => Polymer.mixinBehaviors([Cosmoz.TranslatableBehavior], baseClass);
 
-	Polymer({
-		is: 'cosmoz-i18next',
-		properties: {
-			domain: {
-				type: String,
-				value: 'messages'
-			},
-			interpolationPrefix: {
-				type: String,
-				value: '__'
-			},
-			interpolationSuffix: {
-				type: String,
-				value: '__'
-			},
-			language: {
-				type: String,
-				value: 'en'
-			},
-			namespace: {
-				type: String,
-				value: 'translation'
-			},
-			translations: {
-				type: Object,
-				observer: '_setTranslations'
-			},
-			keySeparator: {
-				type: String,
-				value: '.'
-			},
-			nsSeparator: {
-				type: String,
-				value: ':'
-			}
-		},
-		_setTranslations() {
-			i18n.removeResourceBundle(this.language, this.namespace);
-			i18n.addResources(this.language, this.namespace, this.translations);
-			translationElements.forEach(element => element.set('t', {}));
-		},
+	class CosmozI18Next extends Polymer.Element {
+		static get is() {
+			return 'cosmoz-i18next';
+		}
+		static get properties() {
+
+			return {
+				domain: {
+					type: String,
+					value: 'messages'
+				},
+				interpolationPrefix: {
+					type: String,
+					value: '__'
+				},
+				interpolationSuffix: {
+					type: String,
+					value: '__'
+				},
+				language: {
+					type: String,
+					value: 'en'
+				},
+				namespace: {
+					type: String,
+					value: 'translation'
+				},
+				translations: {
+					type: Object,
+					observer: function () { // eslint-disable-line object-shorthand
+						i18n.removeResourceBundle(this.language, this.namespace);
+						i18n.addResources(this.language, this.namespace, this.translations);
+						translationElements.forEach(element => element.set('t', {}));
+					}
+				},
+				keySeparator: {
+					type: String,
+					value: '.'
+				},
+				nsSeparator: {
+					type: String,
+					value: ':'
+				}
+			};
+		}
 		ready() {
 			i18n.init({
 				interpolationPrefix: this.interpolationPrefix,
@@ -264,5 +269,6 @@
 				resStore: {}
 			});
 		}
-	});
+	}
+	customElements.define(CosmozI18Next.is, CosmozI18Next);
 }());
