@@ -6,9 +6,7 @@
 	<script>
 		/*global Polymer*/
 		window.Cosmoz = window.Cosmoz || {};
-		class CosmozT extends Polymer.mixinBehaviors([
-			Cosmoz.TranslatableBehavior
-		], Polymer.Element) {
+		class CosmozT extends Cosmoz.Mixins.translatable(Polymer.Element) {
 			static get is() {
 				return 'cosmoz-t';
 			}
