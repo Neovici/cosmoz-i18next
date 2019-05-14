@@ -218,8 +218,8 @@
 		static get is() {
 			return 'cosmoz-i18next';
 		}
+		// eslint-disable-next-line max-lines-per-function
 		static get properties() {
-
 			return {
 				domain: {
 					type: String,
