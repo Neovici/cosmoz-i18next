@@ -129,24 +129,27 @@
 		</template>
 
 		<script type="text/javascript">
-			Polymer({
-				behaviors: [
-					Cosmoz.TranslatableBehavior,
-				],
+			/*global Polymer*/
+			window.Cosmoz  = window.Cosmoz || {};
 
-				is: 'x-translatable',
-
-				properties: {
-					nullContext: {
-						type: String,
-						value: null
-					},
-					undefinedContext: {
-						type: String,
-						value: undefined
-					}
+			class XTranslatable extends Cosmoz.Mixins.translatable(Polymer.Element) {
+				static get is() {
+					return 'x-translatable';
 				}
-			});
+				static get properties() {
+					return {
+						nullContext: {
+							type: String,
+							value: null
+						},
+						undefinedContext: {
+							type: String,
+							value: undefined
+						}
+					};
+				}
+			}
+			customElements.define(XTranslatable.is, XTranslatable);
 		</script>
 	</dom-module>
 	<script type="text/javascript">

@@ -1,20 +1,30 @@
+
 <link rel="import" href="cosmoz-i18next.html"/>
 
 <dom-module id="cosmoz-t">
 	<template>[[ _(input, t) ]]</template>
 	<script>
-		(function () {
-			Polymer({
-				is: 'cosmoz-t',
-				properties: {
+		/*global Polymer*/
+		window.Cosmoz = window.Cosmoz || {};
+		class CosmozT extends Cosmoz.Mixins.translatable(Polymer.Element) {
+			static get is() {
+				return 'cosmoz-t';
+			}
+			static get properties() {
+				return {
 					input: {
 						type: String
+					},
+					t: {
+						type: Object
 					}
-				},
-				behaviors: [
-					Cosmoz.TranslatableBehavior
-				]
-			});
-		}());
+				};
+			}
+			_() {
+				// FIXME: remove this when TranslatableBehavior is a 2.x mixin
+				return Cosmoz.TranslatableBehavior._.apply(this, arguments);
+			}
+		}
+		customElements.define(CosmozT.is, CosmozT);
 	</script>
 </dom-module>
