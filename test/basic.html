@@ -28,21 +28,15 @@
 		</test-fixture>
 
 		<script>
+			suite('basic', () => {
+				let element;
 
-			suite('basic', function () {
-				var element;
-
-				setup(function (done){
+				setup(done => {
 					element = fixture('basic');
 					done();
 				});
 
-				test('instantiates a cosmoz-i18next element', function (done){
-					assert.equal(element.is, 'cosmoz-i18next');
-					done();
-				});
-
-				test('sets defaults', function (done){
+				test('sets defaults', done => {
 					assert.equal(element.domain, 'messages');
 					assert.equal(element.interpolationPrefix, '__');
 					assert.equal(element.interpolationSuffix, '__');
@@ -56,22 +50,17 @@
 
 			});
 
-			suite('basic-t', function () {
-				var element;
+			suite('basic-t', () => {
+				let element;
 
-				setup(function (done){
+				setup(done =>{
 					element = fixture('basic-t');
 					done();
 				});
 
-				test('instantiates a cosmoz-t element', function (done){
-					assert.equal(element.is, 'cosmoz-t');
-					done();
-				});
-
-				test('translates key', function (done){
+				test('translates key', done => {
 					assert.isFunction(element._);
-					flush(function (){
+					flush(() => {
 						assert.isTrue(i18n.isInitialized());
 						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe');
 						done();
