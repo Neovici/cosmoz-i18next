@@ -15,12 +15,389 @@
           "line": 11,
           "column": 37
         }
-      }
+      },
+      "mixins": [
+        {
+          "description": "",
+          "summary": "",
+          "path": "cosmoz-i18next.js",
+          "properties": [
+            {
+              "name": "t",
+              "type": "Object | null | undefined",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 28,
+                  "column": 4
+                },
+                "end": {
+                  "line": 33,
+                  "column": 5
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "attributeType": "Object"
+                }
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "_argumentsToObject",
+              "description": "Convert arguments to an object, skipping some argument.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 43,
+                  "column": 2
+                },
+                "end": {
+                  "line": 46,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "args",
+                  "type": "array",
+                  "description": "Arguments."
+                },
+                {
+                  "name": "skipnum",
+                  "type": "number",
+                  "description": "Argument number to skip."
+                }
+              ],
+              "return": {
+                "type": "object",
+                "desc": "Resulting object with arguments."
+              }
+            },
+            {
+              "name": "_arrayToObject",
+              "description": "Convert an array to an object.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 53,
+                  "column": 2
+                },
+                "end": {
+                  "line": 67,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "array",
+                  "type": "array",
+                  "description": "Array to convert."
+                }
+              ],
+              "return": {
+                "type": "object",
+                "desc": "Resulting object."
+              }
+            },
+            {
+              "name": "_ensureInitialized",
+              "description": "Ensure mixin is initialized.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 73,
+                  "column": 2
+                },
+                "end": {
+                  "line": 79,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "void"
+              }
+            },
+            {
+              "name": "_",
+              "description": "Convenience method for gettext. Translates a text.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 86,
+                  "column": 2
+                },
+                "end": {
+                  "line": 88,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "key",
+                  "type": "string",
+                  "description": "Translation key."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            },
+            {
+              "name": "connectedCallback",
+              "description": "Runs when connected.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 93,
+                  "column": 2
+                },
+                "end": {
+                  "line": 96,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "void"
+              }
+            },
+            {
+              "name": "disconnectedCallback",
+              "description": "Runs when disconnected.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 101,
+                  "column": 2
+                },
+                "end": {
+                  "line": 107,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "void"
+              }
+            },
+            {
+              "name": "gettext",
+              "description": "Translates a text.\n\nExample of basic translation:\n`_(string, t)`\n  <div>{{ _(‘My translation’, t) }}</div>\n\nExample of basic translation with interpolation:\n`_(string, [args], t)`\n  <div>{{ _(‘Hello {0}’, user.name, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 123,
+                  "column": 2
+                },
+                "end": {
+                  "line": 125,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "key",
+                  "type": "string",
+                  "description": "Text to translate."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            },
+            {
+              "name": "gettextgeneric",
+              "description": "Generic handler for text translation",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 133,
+                  "column": 2
+                },
+                "end": {
+                  "line": 139,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "key",
+                  "type": "string",
+                  "description": "Text to translate."
+                },
+                {
+                  "name": "callerArgs",
+                  "type": "array",
+                  "description": "Arguments from the calling function."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            },
+            {
+              "name": "ngettext",
+              "description": "Plural version of gettext. Translates a text to the current locale\nusing the first numeric argument after the two first arguments to\ndetermine if output should be singular or plural.\n\nExample of translation in singular or plural:\n`ngettext(singular, plural, count, t)`\n<div>{{ ngettext(‘My translation’,\n  ‘My translations’, count, t) }}</div>\n\nExample of translation in singular or plural with interpolation:\n`ngettext(singular, plural, [count and other args], t)`\n<div>{{ ngettext(‘My translation for “{1}”’,\n  ‘My {0} translations for “{1}”’, count, ‘hello’, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 159,
+                  "column": 2
+                },
+                "end": {
+                  "line": 177,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "singular",
+                  "type": "string",
+                  "description": "Singular text variant."
+                },
+                {
+                  "name": "plural",
+                  "type": "string",
+                  "description": "Plural text variant."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            },
+            {
+              "name": "pgettext",
+              "description": "Translates a text using a specific context.\n\nExample of translation with context:\n`pgettext(context, ‘text’, t)`\n  <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel’, t) }}</div>\n\nExample of translation including context with interpolation:\n`pgettext(context, ‘text’, [args], t)`\n<div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,\n  document.type, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 194,
+                  "column": 2
+                },
+                "end": {
+                  "line": 202,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "context",
+                  "type": "string",
+                  "description": "Context text."
+                },
+                {
+                  "name": "key",
+                  "type": "string",
+                  "description": "Text to translate."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            },
+            {
+              "name": "npgettext",
+              "description": "Translates a text in singular or plural with a specific context.\n\nExample of translation in singular or plural with context:\n`npgettext(context, singular, plural, count, t)`\n<div>{{ npgettext('Cancel invoice', ‘My cancellation’,\n  ‘My {0} cancellations’, count, t) }}</div>\n\nExample of translation in singular or plural with context and\ninterpolation:\n`npgettext(context, singular, plural, count, t)`\n<div>{{ npgettext('Cancel invoice', ‘My {1} cancellation’,\n  ‘My {0} {1} cancellations’, count, document.type, t) }}</div>",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 222,
+                  "column": 2
+                },
+                "end": {
+                  "line": 244,
+                  "column": 3
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "context",
+                  "type": "string",
+                  "description": "Context text."
+                },
+                {
+                  "name": "singular",
+                  "type": "string",
+                  "description": "Singular text variant."
+                },
+                {
+                  "name": "plural",
+                  "type": "string",
+                  "description": "Plural text variant."
+                }
+              ],
+              "return": {
+                "type": "string",
+                "desc": "Translated text."
+              }
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 21,
+              "column": 1
+            },
+            "end": {
+              "line": 245,
+              "column": 3
+            }
+          },
+          "privacy": "public",
+          "name": "Cosmoz.Mixins.translatable",
+          "attributes": [
+            {
+              "name": "t",
+              "description": "",
+              "sourceRange": {
+                "start": {
+                  "line": 28,
+                  "column": 4
+                },
+                "end": {
+                  "line": 33,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "type": "Object | null | undefined"
+            }
+          ],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        }
+      ]
     }
   ],
   "elements": [
     {
-      "description": "`<cosmoz-i18next>` is a translation component based on i18next\n\n### Usage\n\nUse the component as a singleton to interface the i18next library.\n\n    <cosmoz-i18next translations=\"{{ translations }}\"></cosmoz-i18next>",
+      "description": "`<cosmoz-i18next>` is a translation component based on i18next\n\n### Usage\n\nUse the component as a singleton to interface the i18next library.\n\n`<cosmoz-i18next translations=\"{{ translations }}\"></cosmoz-i18next>`",
       "summary": "",
       "path": "cosmoz-i18next.js",
       "properties": [
@@ -629,11 +1006,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 248,
+              "line": 266,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 269,
               "column": 5
             }
           },
@@ -651,11 +1028,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 252,
+              "line": 270,
               "column": 4
             },
             "end": {
-              "line": 255,
+              "line": 273,
               "column": 5
             }
           },
@@ -673,11 +1050,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 256,
+              "line": 274,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 277,
               "column": 5
             }
           },
@@ -695,11 +1072,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 260,
+              "line": 278,
               "column": 4
             },
             "end": {
-              "line": 263,
+              "line": 281,
               "column": 5
             }
           },
@@ -717,11 +1094,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 264,
+              "line": 282,
               "column": 4
             },
             "end": {
-              "line": 267,
+              "line": 285,
               "column": 5
             }
           },
@@ -739,11 +1116,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 268,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 275,
+              "line": 293,
               "column": 5
             }
           },
@@ -761,11 +1138,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 297,
               "column": 5
             }
           },
@@ -783,11 +1160,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 280,
+              "line": 298,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 301,
               "column": 5
             }
           },
@@ -1049,11 +1426,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 286,
+              "line": 304,
               "column": 2
             },
             "end": {
-              "line": 295,
+              "line": 313,
               "column": 3
             }
           },
@@ -3981,11 +4358,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 242,
+          "line": 260,
           "column": 1
         },
         "end": {
-          "line": 296,
+          "line": 314,
           "column": 2
         }
       },
@@ -3998,11 +4375,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 248,
+              "line": 266,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 269,
               "column": 5
             }
           },
@@ -4014,11 +4391,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 252,
+              "line": 270,
               "column": 4
             },
             "end": {
-              "line": 255,
+              "line": 273,
               "column": 5
             }
           },
@@ -4030,11 +4407,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 256,
+              "line": 274,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 277,
               "column": 5
             }
           },
@@ -4046,11 +4423,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 260,
+              "line": 278,
               "column": 4
             },
             "end": {
-              "line": 263,
+              "line": 281,
               "column": 5
             }
           },
@@ -4062,11 +4439,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 264,
+              "line": 282,
               "column": 4
             },
             "end": {
-              "line": 267,
+              "line": 285,
               "column": 5
             }
           },
@@ -4078,11 +4455,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 268,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 275,
+              "line": 293,
               "column": 5
             }
           },
@@ -4094,11 +4471,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 297,
               "column": 5
             }
           },
@@ -4110,11 +4487,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 280,
+              "line": 298,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 301,
               "column": 5
             }
           },
@@ -4136,38 +4513,17 @@
       "path": "cosmoz-t.html",
       "properties": [
         {
-          "name": "input",
-          "type": "string | null | undefined",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 14,
-              "column": 5
-            },
-            "end": {
-              "line": 16,
-              "column": 6
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "attributeType": "String"
-            }
-          }
-        },
-        {
           "name": "t",
           "type": "Object | null | undefined",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 17,
+              "line": 21,
               "column": 5
             },
             "end": {
-              "line": 19,
+              "line": 23,
               "column": 6
             }
           },
@@ -4176,86 +4532,42 @@
               "attributeType": "Object"
             }
           }
-        }
-      ],
-      "methods": [],
-      "staticMethods": [],
-      "demos": [],
-      "metadata": {},
-      "sourceRange": {
-        "start": {
-          "line": 8,
-          "column": 2
         },
-        "end": {
-          "line": 22,
-          "column": 3
-        }
-      },
-      "privacy": "public",
-      "superclass": "HTMLElement",
-      "name": "CosmozT",
-      "attributes": [
         {
           "name": "input",
+          "type": "string | null | undefined",
           "description": "",
+          "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 14,
+              "line": 18,
               "column": 5
             },
             "end": {
-              "line": 16,
+              "line": 20,
               "column": 6
             }
           },
-          "metadata": {},
-          "type": "string | null | undefined"
-        },
-        {
-          "name": "t",
-          "description": "",
-          "sourceRange": {
-            "start": {
-              "line": 17,
-              "column": 5
-            },
-            "end": {
-              "line": 19,
-              "column": 6
+          "metadata": {
+            "polymer": {
+              "attributeType": "String"
             }
-          },
-          "metadata": {},
-          "type": "Object | null | undefined"
+          }
         }
       ],
-      "events": [],
-      "styling": {
-        "cssVariables": [],
-        "selectors": []
-      },
-      "slots": [],
-      "tagname": "cosmoz-t"
-    }
-  ],
-  "classes": [
-    {
-      "description": "",
-      "summary": "",
-      "path": "cosmoz-i18next.js",
-      "properties": [],
       "methods": [
         {
           "name": "_argumentsToObject",
           "description": "Convert arguments to an object, skipping some argument.",
           "privacy": "protected",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 38,
+              "line": 43,
               "column": 2
             },
             "end": {
-              "line": 41,
+              "line": 46,
               "column": 3
             }
           },
@@ -4275,19 +4587,21 @@
           "return": {
             "type": "object",
             "desc": "Resulting object with arguments."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "_arrayToObject",
           "description": "Convert an array to an object.",
           "privacy": "protected",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 48,
+              "line": 53,
               "column": 2
             },
             "end": {
-              "line": 62,
+              "line": 67,
               "column": 3
             }
           },
@@ -4302,19 +4616,21 @@
           "return": {
             "type": "object",
             "desc": "Resulting object."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "_ensureInitialized",
           "description": "Ensure mixin is initialized.",
           "privacy": "protected",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 68,
+              "line": 73,
               "column": 2
             },
             "end": {
-              "line": 74,
+              "line": 79,
               "column": 3
             }
           },
@@ -4322,19 +4638,21 @@
           "params": [],
           "return": {
             "type": "void"
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "_",
           "description": "Convenience method for gettext. Translates a text.",
           "privacy": "protected",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 81,
+              "line": 86,
               "column": 2
             },
             "end": {
-              "line": 83,
+              "line": 88,
               "column": 3
             }
           },
@@ -4349,19 +4667,21 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "connectedCallback",
           "description": "Runs when connected.",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 88,
+              "line": 93,
               "column": 2
             },
             "end": {
-              "line": 91,
+              "line": 96,
               "column": 3
             }
           },
@@ -4369,19 +4689,21 @@
           "params": [],
           "return": {
             "type": "void"
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "disconnectedCallback",
           "description": "Runs when disconnected.",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 96,
+              "line": 101,
               "column": 2
             },
             "end": {
-              "line": 102,
+              "line": 107,
               "column": 3
             }
           },
@@ -4389,19 +4711,21 @@
           "params": [],
           "return": {
             "type": "void"
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "gettext",
           "description": "Translates a text.\n\nExample of basic translation:\n`_(string, t)`\n  <div>{{ _(‘My translation’, t) }}</div>\n\nExample of basic translation with interpolation:\n`_(string, [args], t)`\n  <div>{{ _(‘Hello {0}’, user.name, t) }}</div>",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 118,
+              "line": 123,
               "column": 2
             },
             "end": {
-              "line": 120,
+              "line": 125,
               "column": 3
             }
           },
@@ -4416,19 +4740,21 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "gettextgeneric",
           "description": "Generic handler for text translation",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 128,
+              "line": 133,
               "column": 2
             },
             "end": {
-              "line": 134,
+              "line": 139,
               "column": 3
             }
           },
@@ -4448,19 +4774,21 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "ngettext",
           "description": "Plural version of gettext. Translates a text to the current locale\nusing the first numeric argument after the two first arguments to\ndetermine if output should be singular or plural.\n\nExample of translation in singular or plural:\n`ngettext(singular, plural, count, t)`\n<div>{{ ngettext(‘My translation’,\n  ‘My translations’, count, t) }}</div>\n\nExample of translation in singular or plural with interpolation:\n`ngettext(singular, plural, [count and other args], t)`\n<div>{{ ngettext(‘My translation for “{1}”’,\n  ‘My {0} translations for “{1}”’, count, ‘hello’, t) }}</div>",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 154,
+              "line": 159,
               "column": 2
             },
             "end": {
-              "line": 172,
+              "line": 177,
               "column": 3
             }
           },
@@ -4480,19 +4808,21 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "pgettext",
           "description": "Translates a text using a specific context.\n\nExample of translation with context:\n`pgettext(context, ‘text’, t)`\n  <div>{{ pgettext(‘Cancel Invoice’, ‘Cancel’, t) }}</div>\n\nExample of translation including context with interpolation:\n`pgettext(context, ‘text’, [args], t)`\n<div>{{ pgettext(‘Cancel Invoice’, ‘Cancel {0}’,\n  document.type, t) }}</div>",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 189,
+              "line": 194,
               "column": 2
             },
             "end": {
-              "line": 197,
+              "line": 202,
               "column": 3
             }
           },
@@ -4512,19 +4842,21 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         },
         {
           "name": "npgettext",
           "description": "Translates a text in singular or plural with a specific context.\n\nExample of translation in singular or plural with context:\n`npgettext(context, singular, plural, count, t)`\n<div>{{ npgettext('Cancel invoice', ‘My cancellation’,\n  ‘My {0} cancellations’, count, t) }}</div>\n\nExample of translation in singular or plural with context and\ninterpolation:\n`npgettext(context, singular, plural, count, t)`\n<div>{{ npgettext('Cancel invoice', ‘My {1} cancellation’,\n  ‘My {0} {1} cancellations’, count, document.type, t) }}</div>",
           "privacy": "public",
           "sourceRange": {
+            "file": "cosmoz-i18next.js",
             "start": {
-              "line": 217,
+              "line": 222,
               "column": 2
             },
             "end": {
-              "line": 239,
+              "line": 244,
               "column": 3
             }
           },
@@ -4549,7 +4881,8 @@
           "return": {
             "type": "string",
             "desc": "Translated text."
-          }
+          },
+          "inheritedFrom": "Cosmoz.Mixins.translatable"
         }
       ],
       "staticMethods": [],
@@ -4557,16 +4890,61 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 16,
-          "column": 43
+          "line": 12,
+          "column": 2
         },
         "end": {
-          "line": 240,
-          "column": 2
+          "line": 26,
+          "column": 3
         }
       },
       "privacy": "public",
-      "superclass": "baseClass"
+      "superclass": "HTMLElement",
+      "name": "CosmozT",
+      "attributes": [
+        {
+          "name": "t",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 21,
+              "column": 5
+            },
+            "end": {
+              "line": 23,
+              "column": 6
+            }
+          },
+          "metadata": {},
+          "type": "Object | null | undefined"
+        },
+        {
+          "name": "input",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 18,
+              "column": 5
+            },
+            "end": {
+              "line": 20,
+              "column": 6
+            }
+          },
+          "metadata": {},
+          "type": "string | null | undefined"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "cosmoz-t",
+      "mixins": [
+        "Cosmoz.Mixins.translatable"
+      ]
     }
   ]
 }
