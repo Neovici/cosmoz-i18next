@@ -5,25 +5,47 @@
 	window.Cosmoz = window.Cosmoz || {};
 
 	const translationElements = [];
-	/**
-	 * Translation behavior using the I18next internationalization framework.
-	 *
-	 * @polymerBehavior */
-	Cosmoz.TranslatableBehavior = {
-		properties: {
-			t: {
-				type: Object,
-				value() {
-					return {};
-				}
-			}
-		},
 
+	/**
+	* @namespace Cosmoz.Mixins
+	*/
+	Cosmoz.Mixins = Cosmoz.Mixins || {};
+	/**
+	* @memberof Cosmoz.Mixins
+	*/
+
+	Cosmoz.Mixins.translatable = baseClass => class extends baseClass {
+		/**
+		 * Get mixin properties.
+		 * @returns {object} Mixin properties.
+		*/
+		static get properties() {
+			return {
+				t: {
+					type: Object,
+					value() {
+						return {};
+					}
+				}
+			};
+		}
+		/**
+		 * Convert arguments to an object, skipping some argument.
+		 *
+		 * @param {array} args Arguments.
+		 * @param {number} skipnum Argument number to skip.
+		 * @returns {object} Resulting object with arguments.
+		 */
 		_argumentsToObject(args, skipnum) {
 			const argsArray = Array.prototype.slice.call(args, skipnum);
 			return this._arrayToObject(argsArray);
-		},
-
+		}
+		/**
+		 * Convert an array to an object.
+		 *
+		 * @param {array} array Array to convert.
+		 * @returns {object} Resulting object.
+		 */
 		_arrayToObject(array) {
 			const ctx = this,
 				object = {};
@@ -38,16 +60,19 @@
 				}
 			});
 			return object;
-		},
-
+		}
+		/**
+		 * Ensure mixin is initialized.
+		 *
+		 * @returns {void}
+		 */
 		_ensureInitialized() {
 			if (!i18n.isInitialized()) {
 				// default i18n init, to ensure translate function will return something
 				// even when there is no <i18next> element in the page.
 				i18n.init({lng: 'en', resStore: { en: {}}, fallbackLng: false});
 			}
-		},
-
+		}
 		/**
 		 * Convenience method for gettext. Translates a text.
 		 *
@@ -56,19 +81,26 @@
 		 */
 		_(key) {
 			return this.gettextgeneric(key, arguments);
-		},
-
-		attached() {
+		}
+		/**
+		 * Runs when connected.
+		 * @returns {void}
+		 */
+		connectedCallback() {
+			super.connectedCallback();
 			translationElements.push(this);
-		},
-
-		detached() {
+		}
+		/**
+		 * Runs when disconnected.
+		 * @returns {void}
+		 */
+		disconnectedCallback() {
+			super.connectedCallback();
 			const i = translationElements.indexOf(this);
 			if (i >= 0) {
 				translationElements.splice(i, 1);
 			}
-		},
-
+		}
 		/**
 		 * Translates a text.
 		 *
@@ -86,7 +118,7 @@
 		 */
 		gettext(key) {
 			return this.gettextgeneric(key, arguments);
-		},
+		}
 		/**
 		 * Generic handler for text translation
 		 *
@@ -100,8 +132,7 @@
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
-		},
-
+		}
 		/**
 		 * Plural version of gettext. Translates a text to the current locale
 		 * using the first numeric argument after the two first arguments to
@@ -139,8 +170,7 @@
 				args.defaultValue = singular;
 			}
 			return i18n.t(key, args);
-		},
-
+		}
 		/**
 		 * Translates a text using a specific context.
 		 *
@@ -165,8 +195,7 @@
 			// Don't make i18next fetch more translations
 			delete args.count;
 			return i18n.t(key, args);
-		},
-
+		}
 		/**
 		 * Translates a text in singular or plural with a specific context.
 		 *
@@ -210,9 +239,6 @@
 			return i18n.t(key, args);
 		}
 	};
-
-	Cosmoz.Mixins = Cosmoz.Mixins || {};
-	Cosmoz.Mixins.translatable = baseClass => Polymer.mixinBehaviors([Cosmoz.TranslatableBehavior], baseClass);
 
 	class CosmozI18Next extends Polymer.Element {
 		static get is() {
