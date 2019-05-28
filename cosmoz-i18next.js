@@ -10,11 +10,16 @@
 	* @namespace Cosmoz.Mixins
 	*/
 	Cosmoz.Mixins = Cosmoz.Mixins || {};
-	/**
-	* @memberof Cosmoz.Mixins
-	*/
 
-	Cosmoz.Mixins.translatable = baseClass => class extends baseClass {
+	/**
+	 * @memberof Cosmoz.Mixins
+	 *
+	 * @polymer
+	 * @mixinFunction
+	 * @param  {class} baseClass the base class
+	 * @return {class}           the mixed in class
+	 */
+	Cosmoz.Mixins.translatable = Polymer.dedupingMixin(baseClass =>	class extends baseClass {
 		/**
 		 * Get mixin properties.
 		 * @returns {object} Mixin properties.
@@ -238,8 +243,21 @@
 
 			return i18n.t(key, args);
 		}
-	};
+	});
 
+	/**
+	 * `<cosmoz-i18next>` is a translation component based on i18next
+	 *
+	 * ### Usage
+	 *
+	 * Use the component as a singleton to interface the i18next library.
+	 *
+	 * `<cosmoz-i18next translations="{{ translations }}"></cosmoz-i18next>`
+	 *
+	 * @polymer
+	 * @customElement
+	 * @demo demo/index.html
+	 */
 	class CosmozI18Next extends Polymer.Element {
 		static get is() {
 			return 'cosmoz-i18next';
