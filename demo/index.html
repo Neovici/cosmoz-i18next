@@ -6,15 +6,15 @@
 
 	<title>Cosmoz i18next</title>
 
-	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="/components/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+	<script src="/components/web-animations-js/web-animations-next-lite.min.js"></script>
 
-	<link rel="import" href="../../neon-animation/web-animations.html">
-	<link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
-	<link rel="import" href="../../paper-listbox/paper-listbox.html">
-	<link rel="import" href="../../paper-item/paper-item.html">
+	<script type="module" src="/components/@polymer/paper-dropdown-menu/paper-dropdown-menu.js"></script>
+	<script type="module" src="/components/@polymer/paper-listbox/paper-listbox.js"></script>
+	<script type="module" src="/components/@polymer/paper-item/paper-item.js"></script>
 
-	<link rel="import" href="../cosmoz-i18next.html">
-	<link rel="import" href="../cosmoz-t.html">
+	<script type="module" src="../cosmoz-i18next.js"></script>
+	<script type="module" src="../cosmoz-t.js"></script>
 </head>
 <body>
 	<dom-bind id="t">
@@ -128,11 +128,11 @@
 			</div>
 		</template>
 
-		<script type="text/javascript">
-			/*global Polymer*/
-			window.Cosmoz  = window.Cosmoz || {};
+		<script type="module">
+			import { translatable } from '../cosmoz-i18next.js';
+			import { PolymerElement } from '@polymer/polymer/polymer-element';
 
-			class XTranslatable extends Cosmoz.Mixins.translatable(Polymer.Element) {
+			class XTranslatable extends translatable(PolymerElement) {
 				static get is() {
 					return 'x-translatable';
 				}
@@ -152,10 +152,8 @@
 			customElements.define(XTranslatable.is, XTranslatable);
 		</script>
 	</dom-module>
-	<script type="text/javascript">
-	(function () {
-		'use strict';
 
+	<script type="module">
 		window.addEventListener('WebComponentsReady', () => {
 			let t = document.getElementById('t'),
 				translations = {
@@ -166,10 +164,10 @@
 						'Cancel invoice': '(singular) Cancel invoice',
 						'Cancel invoice_supplier': '(supplier) Cancel supplier invoice',
 						'Cancel $0$ invoice': '(no context, singular) Cancel this invoice',
-						'Cancel $0$ invoice_plural': '(no context, plural)  Cancel these $0$ invoices',
-						'Cancel $0$ invoice_supplier': '(supplier)  Cancel this supplier invoice',
-						'Cancel $0$ invoice_supplier_plural': '(supplier, plural)  Cancel these $0$ supplier invoices',
-						'Reject $0$ invoice': '(no context, singular)  Reject invoice'
+						'Cancel $0$ invoice_plural': '(no context, plural)	Cancel these $0$ invoices',
+						'Cancel $0$ invoice_supplier': '(supplier)	Cancel this supplier invoice',
+						'Cancel $0$ invoice_supplier_plural': '(supplier, plural)	 Cancel these $0$ supplier invoices',
+						'Reject $0$ invoice': '(no context, singular)	 Reject invoice'
 					},
 					fr: {
 						'Approve invoice': '(singular) Approuver la facture',
@@ -183,11 +181,12 @@
 					}
 				};
 			t = !t.set ? t.firstElementChild : t;
+
 			t.getTranslations = (locale) => {
 				return translations[locale];
 			};
+			t.locale = 'sv';
 		});
-	}());
 	</script>
 </body>
 </html>
