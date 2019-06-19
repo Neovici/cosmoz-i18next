@@ -2,36 +2,54 @@
 	"name": "cosmoz-i18next",
 	"version": "1.0.0",
 	"description": "[![Build Status](https://travis-ci.org/Neovici/cosmoz-i18next.svg?branch=master)](https://travis-ci.org/Neovici/cosmoz-i18next)",
-	"main": "cosmoz-i18next.html",
-	"directories": {
-		"test": "test"
-	},
-	"devDependencies": {
-		"eslint": "^4.10.0",
-		"eslint-plugin-html": "^3.2.1",
-		"eslint-plugin-mocha": "^4.11.0",
-		"polymer-cli": "^1.8.0",
-		"web-component-tester-istanbul": "Neovici/web-component-tester-istanbul"
-	},
-	"scripts": {
-		"start": "polymer serve -o",
-		"postinstall": "polymer install",
-		"lint": "eslint --cache --ext .js,.html . && polymer lint cosmoz-*.html",
-		"test": "polymer test",
-		"analyze": "polymer analyze --input cosmoz-*.html  > analysis.json"
+	"keywords": [
+		"polymer",
+		"web-components"
+	],
+	"homepage": "https://github.com/neovici/cosmoz-i18next#readme",
+	"bugs": {
+		"url": "https://github.com/neovici/cosmoz-i18next/issues"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/neovici/cosmoz-i18next.git"
 	},
-	"keywords": [
-		"polymer",
-		"web-components"
-	],
-	"author": "",
 	"license": "Apache-2.0",
-	"bugs": {
-		"url": "https://github.com/neovici/cosmoz-i18next/issues"
+	"author": "Neovici Development",
+	"main": "cosmoz-i18next.js",
+	"directories": {
+		"test": "test"
 	},
-	"homepage": "https://github.com/neovici/cosmoz-i18next#readme"
+	"scripts": {
+		"analyze": "polymer analyze --input cosmoz-*.js  > analysis.json",
+		"lint": "eslint --cache --ext .js,.html . && polymer lint cosmoz-*.js",
+		"start": "polymer serve -o",
+		"test": "polymer test"
+	},
+	"dependencies": {
+		"@polymer/polymer": "^3.0.0",
+		"i18next-client": "^1.11.4"
+	},
+	"devDependencies": {
+		"@neovici/eslint-config": "neovici/eslint-config#semver:^1.0.0",
+		"@polymer/iron-component-page": "^4.0.0",
+		"@polymer/iron-demo-helpers": "^3.0.0",
+		"@polymer/iron-test-helpers": "^3.0.0",
+		"@polymer/paper-dropdown-menu": "^3.0.0",
+		"@polymer/paper-item": "^3.0.0",
+		"@polymer/paper-listbox": "^3.0.0",
+		"@polymer/test-fixture": "^4.0.2",
+		"@webcomponents/webcomponentsjs": "^2.0.0",
+		"babel-eslint": "^10.0.2",
+		"chai": "^4.2.0",
+		"eslint": "^5.0.0",
+		"eslint-plugin-html": "^5.0.0",
+		"eslint-plugin-import": "^2.17.3",
+		"eslint-plugin-mocha": "^5.0.0",
+		"mocha": "^5.0.0",
+		"polymer-cli": "^1.8.0",
+		"wct-istanbul": "^0.14.3",
+		"wct-mocha": "^1.0.0",
+		"web-animations-js": "^2.3.1"
+	}
 }
