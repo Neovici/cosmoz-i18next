@@ -31,7 +31,7 @@
 		</test-fixture>
 
 		<script type="module">
-			suite('basic', function () {
+			suite('basic', () => {
 				let element;
 
 				setup(() => {
@@ -59,7 +59,7 @@
 				test('translates key', done => {
 					assert.isFunction(element._);
 					flush(() => {
-						assert.isTrue(i18n.isInitialized());
+						assert.isTrue(window.i18n.isInitialized());
 						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe');
 						done();
 					}, 90);

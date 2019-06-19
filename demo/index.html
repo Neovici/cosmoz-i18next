@@ -155,7 +155,7 @@
 
 	<script type="module">
 		window.addEventListener('WebComponentsReady', () => {
-			let t = document.getElementById('t'),
+			const t = document.getElementById('t'),
 				translations = {
 					en: {
 						key: 'asdfkeasdfeeey',
@@ -172,17 +172,16 @@
 					fr: {
 						'Approve invoice': '(singular) Approuver la facture',
 						'Cancel invoice': '(singular) Annuler la facture',
-						'Cancel invoice_supplier': '(supplier) Annuler la facture fournisseur',
+						'Cancel invoice_supplier': '(supplier) Annuler la facture fournisseur'
 					},
 					sv: {
 						'Hello $0$': 'Hej $0$',
 						'I have $0$ invoice': '(singular) Jag har bara $0$ faktura',
-						'I have $0$ invoice_plural': '(plural) Jag har faktiskt $0$ fakturor',
+						'I have $0$ invoice_plural': '(plural) Jag har faktiskt $0$ fakturor'
 					}
 				};
-			t = !t.set ? t.firstElementChild : t;
 
-			t.getTranslations = (locale) => {
+			t.getTranslations = locale => {
 				return translations[locale];
 			};
 			t.locale = 'sv';

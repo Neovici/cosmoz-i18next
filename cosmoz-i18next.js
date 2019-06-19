@@ -2,6 +2,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
 import 'i18next-client';
 
+const { i18n } = window;
 const translationElements = [];
 
 /**
@@ -11,7 +12,7 @@ const translationElements = [];
  * @param	 {class} baseClass the base class
  * @return {class}					 the mixed in class
  */
-export const translatable = dedupingMixin(baseClass => class extends baseClass {
+export const translatable = dedupingMixin(baseClass => class extends baseClass { // eslint-disable-line max-lines-per-function
 	/**
 	 * Get mixin properties.
 	 * @returns {object} Mixin properties.
@@ -44,15 +45,14 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @returns {object} Resulting object.
 	 */
 	_arrayToObject(array) {
-		const ctx = this,
-			object = {};
+		const object = {};
 
 		array.forEach((item, index) => {
 			if (object.count === undefined && typeof item === 'number') {
 				object.count = item;
 			}
 			// Don't send the 't' kicker to i18n for arguments
-			if (item !== ctx.t) {
+			if (item !== this.t) {
 				object[index] = item;
 			}
 		});
