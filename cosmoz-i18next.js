@@ -1,8 +1,7 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
-import 'i18next-client';
+import i18n from 'i18next';
 
-const { i18n } = window;
 const translationElements = [];
 
 /**
@@ -64,10 +63,13 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @returns {void}
 	 */
 	_ensureInitialized() {
-		if (!i18n.isInitialized()) {
+		if (!i18n.isInitialized) {
 			// default i18n init, to ensure translate function will return something
 			// even when there is no <i18next> element in the page.
-			i18n.init({lng: 'en', resStore: { en: {}}, fallbackLng: false});
+			i18n.init({
+				lng: 'en',
+				fallbackLng: false
+			});
 		}
 	}
 	/**
@@ -296,12 +298,13 @@ class CosmozI18Next extends PolymerElement {
 	}
 	ready() {
 		i18n.init({
-			interpolationPrefix: this.interpolationPrefix,
-			interpolationSuffix: this.interpolationSuffix,
-			keyseparator: this.keySeparator,
+			interpolation: {
+				prefix: this.interpolationPrefix,
+				suffix: this.interpolationSuffix
+			},
+			keySeparator: this.keySeparator,
 			lng: this.language,
-			nsseparator: this.nsSeparator,
-			resStore: {}
+			nsSeparator: this.nsSeparator
 		});
 	}
 }

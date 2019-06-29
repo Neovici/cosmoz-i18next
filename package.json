@@ -30,7 +30,7 @@
 	},
 	"dependencies": {
 		"@polymer/polymer": "^3.0.0",
-		"i18next-client": "^1.11.4"
+		"i18next": "^17.0.4"
 	},
 	"devDependencies": {
 		"@neovici/eslint-config": "neovici/eslint-config#semver:^1.0.0",

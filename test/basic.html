@@ -31,6 +31,7 @@
 		</test-fixture>
 
 		<script type="module">
+			import i18n from 'i18next';
 			suite('basic', () => {
 				let element;
 
@@ -59,7 +60,7 @@
 				test('translates key', done => {
 					assert.isFunction(element._);
 					flush(() => {
-						assert.isTrue(window.i18n.isInitialized());
+						assert.isTrue(i18n.isInitialized);
 						assert.equal(element._('Hello __0__', 'John Doe'), 'Hello John Doe');
 						done();
 					}, 90);
