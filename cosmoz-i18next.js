@@ -2,8 +2,8 @@ import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
 import 'i18next-client';
 
-const { i18n } = window;
-const translationElements = [];
+const { i18n } = window,
+	translationElements = [];
 
 /**
  *
