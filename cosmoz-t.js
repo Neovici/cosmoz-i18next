@@ -9,10 +9,6 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
  * @appliesMixin translatable
  */
 class CosmozT extends translatable(PolymerElement) {
-	static get is() {
-		return 'cosmoz-t';
-	}
-
 	static get template() {
 		return html`[[ _(input, t) ]]`;
 	}
@@ -29,4 +25,4 @@ class CosmozT extends translatable(PolymerElement) {
 	}
 }
 
-customElements.define(CosmozT.is, CosmozT);
+customElements.define('cosmoz-t', CosmozT);
