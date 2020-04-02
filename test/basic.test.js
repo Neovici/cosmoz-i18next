@@ -1,4 +1,4 @@
-/*global i18n*/
+import i18n from 'i18next';
 import {
 	assert, fixture, html
 } from '@open-wc/testing';
@@ -34,15 +34,17 @@ suite('core', () => {
 		const lng = 'sv',
 			translations = await fetch('/base/test/translations.json').then(r => r.json());
 		await i18n.init({
-			interpolationPrefix: '{',
-			interpolationSuffix: '}',
+			interpolation: {
+				prefix: '{',
+				suffix: '}'
+			},
 			lng
 		});
 		loadTranslations(lng, 'translation', translations);
 	});
 
 	test('init', () => {
-		assert.isTrue(window.i18n.isInitialized());
+		assert.isTrue(i18n.isInitialized);
 	});
 
 	test('_', () => {

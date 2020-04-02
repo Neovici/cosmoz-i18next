@@ -1,11 +1,11 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
-import 'i18next-client';
+import i18n from 'i18next';
 
-const { i18n } = window,
+const
 	translationElements = [],
 	ensureInitialized = () => {
-		if (!i18n.isInitialized()) {
+		if (!i18n.isInitialized) {
 			// default i18n init, to ensure translate function will return something
 			// even when there is no <i18next> element in the page.
 			i18n.init({
@@ -45,9 +45,10 @@ const { i18n } = window,
 
 		delete args.count;
 
-		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+		const pluralSuffix = i18n.services.pluralResolver.getSuffix(i18n.language, n);
+		if (pluralSuffix) {
 			args.defaultValue = plural;
-			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + i18n.options.pluralSuffix;
+			key = singular + pluralSuffix;
 		} else {
 			key = singular;
 			args.defaultValue = singular;
@@ -73,9 +74,10 @@ const { i18n } = window,
 
 		delete args.count;
 
-		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+		const pluralSuffix = i18n.services.pluralResolver.getSuffix(i18n.language, n);
+		if (pluralSuffix) {
 			args.defaultValue = plural;
-			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + contextKeyPart + i18n.options.pluralSuffix;
+			key = singular + contextKeyPart + pluralSuffix;
 		} else {
 			key = singular;
 			args.context = context;
@@ -272,8 +274,10 @@ class CosmozI18Next extends PolymerElement {
 	}
 	ready() {
 		i18n.init({
-			interpolationPrefix: this.interpolationPrefix,
-			interpolationSuffix: this.interpolationSuffix,
+			interpolation: {
+				prefix: this.interpolationPrefix,
+				suffix: this.interpolationSuffix
+			},
 			keyseparator: this.keySeparator,
 			lng: this.language,
 			nsseparator: this.nsSeparator,
