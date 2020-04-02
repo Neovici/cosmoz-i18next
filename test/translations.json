@@ -1,0 +1,12 @@
+{
+    "Hello {0}": "Hej {0}",
+    "Hello {0}_plural": "Hej alla {0}",
+    "{0} invoice": "{0} faktura",
+    "{0} invoice_plural": "{0} fakturor",
+    "Cancel": "Avbryt",
+    "Cancel_invoice": "Makulera",
+    "Cancel {0} invoice": "Makulera en faktura",
+    "Cancel {0} invoice_plural": "Makulera {0} fakturor",
+    "Cancel {0} invoice_supplier": "Makulera en leverantörsfaktura",
+	"Cancel {0} invoice_supplier_plural": "Makulera {0} leverantörsfakturor"
+}

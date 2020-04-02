@@ -3,16 +3,92 @@ import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
 import 'i18next-client';
 
 const { i18n } = window,
-	translationElements = [];
+	translationElements = [],
+	ensureInitialized = () => {
+		if (!i18n.isInitialized()) {
+			// default i18n init, to ensure translate function will return something
+			// even when there is no <i18next> element in the page.
+			i18n.init({
+				lng: 'en',
+				resStore: { en: {}},
+				fallbackLng: false
+			});
+		}
+	},
+	/**
+	 * Convert arguments to an object, skipping some argument.
+	 *
+	 * @param {array} args Arguments.
+	 * @returns {object} Resulting object with arguments.
+	 */
+	argumentsToObject = args => {
+		return args.reduce((object, item, index) => {
+			if (object.count === undefined && typeof item === 'number') {
+				object.count = item;
+			}
+			object[index] = item;
+			return object;
+		}, {});
+	},
+	gettext = function (key) {
+		ensureInitialized();
+		const args = argumentsToObject([...arguments].slice(1));
+		// Don't make i18next fetch more translations
+		delete args.count;
+		return i18n.t(key, args);
+	},
+	ngettext = function (singular, plural) {
+		ensureInitialized();
+		const args = argumentsToObject([...arguments].slice(2)),
+			n = args.count;
+		let key;
 
-/**
- *
- * @polymer
- * @mixinFunction
- * @param	 {class} baseClass the base class
- * @return {class}					 the mixed in class
- */
-export const translatable = dedupingMixin(baseClass => class extends baseClass { // eslint-disable-line max-lines-per-function
+		delete args.count;
+
+		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+			args.defaultValue = plural;
+			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + i18n.options.pluralSuffix;
+		} else {
+			key = singular;
+			args.defaultValue = singular;
+		}
+		return i18n.t(key, args);
+	},
+	pgettext = function (context, key) {
+		ensureInitialized();
+		const args = argumentsToObject([...arguments].slice(2));
+		args.context = context;
+		// Don't make i18next fetch more translations
+		delete args.count;
+		return i18n.t(key, args);
+	},
+	npgettext = function (context, singular, plural) {
+		ensureInitialized();
+
+		const
+			args = argumentsToObject([...arguments].slice(3)),
+			n = args.count,
+			contextKeyPart = context ? '_' + context : '';
+		let key = singular;
+
+		delete args.count;
+
+		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
+			args.defaultValue = plural;
+			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + contextKeyPart + i18n.options.pluralSuffix;
+		} else {
+			key = singular;
+			args.context = context;
+		}
+
+		return i18n.t(key, args);
+	},
+	loadTranslations = (lang, namespace, translations) => {
+		i18n.removeResourceBundle(lang, namespace);
+		i18n.addResources(lang, namespace, translations);
+	};
+
+export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	/**
 	 * Get mixin properties.
 	 * @returns {object} Mixin properties.
@@ -27,48 +103,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 			}
 		};
 	}
-	/**
-	 * Convert arguments to an object, skipping some argument.
-	 *
-	 * @param {array} args Arguments.
-	 * @param {number} skipnum Argument number to skip.
-	 * @returns {object} Resulting object with arguments.
-	 */
-	_argumentsToObject(args, skipnum) {
-		const argsArray = Array.prototype.slice.call(args, skipnum);
-		return this._arrayToObject(argsArray);
-	}
-	/**
-	 * Convert an array to an object.
-	 *
-	 * @param {array} array Array to convert.
-	 * @returns {object} Resulting object.
-	 */
-	_arrayToObject(array) {
-		const object = {};
-
-		array.forEach((item, index) => {
-			if (object.count === undefined && typeof item === 'number') {
-				object.count = item;
-			}
-			// Don't send the 't' kicker to i18n for arguments
-			if (item !== this.t) {
-				object[index] = item;
-			}
-		});
-		return object;
-	}
-	/**
-	 * Ensure mixin is initialized.
-	 *
-	 * @returns {void}
-	 */
-	_ensureInitialized() {
-		if (!i18n.isInitialized()) {
-			// default i18n init, to ensure translate function will return something
-			// even when there is no <i18next> element in the page.
-			i18n.init({lng: 'en', resStore: { en: {}}, fallbackLng: false});
-		}
+	_filterT(args) {
+		return args.filter(item => item !== this.t);
 	}
 	/**
 	 * Convenience method for gettext. Translates a text.
@@ -76,8 +112,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @param {string} key Translation key.
 	 * @returns {string} Translated text.
 	 */
-	_(key) {
-		return this.gettextgeneric(key, arguments);
+	_() {
+		return gettext.apply(null, this._filterT([...arguments]));
 	}
 	/**
 	 * Runs when connected.
@@ -113,22 +149,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @param {object} t Behavior t object.
 	 * @return {string} Translated text.
 	 */
-	gettext(key) {
-		return this.gettextgeneric(key, arguments);
-	}
-	/**
-	 * Generic handler for text translation
-	 *
-	 * @param {string} key Text to translate.
-	 * @param {array} callerArgs Arguments from the calling function.
-	 * @return {string} Translated text.
-	 */
-	gettextgeneric(key, callerArgs) {
-		this._ensureInitialized();
-		const args = this._argumentsToObject(callerArgs, 1);
-		// Don't make i18next fetch more translations
-		delete args.count;
-		return i18n.t(key, args);
+	gettext() {
+		return gettext.apply(null, this._filterT([...arguments]));
 	}
 	/**
 	 * Plural version of gettext. Translates a text to the current locale
@@ -149,24 +171,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @param {string} plural Plural text variant.
 	 * @return {string} Translated text.
 	 */
-	ngettext(singular, plural) {
-		this._ensureInitialized();
-
-		const
-			args = this._argumentsToObject(arguments, 2),
-			n = args.count;
-		let key;
-
-		delete args.count;
-
-		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
-			args.defaultValue = plural;
-			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + i18n.options.pluralSuffix;
-		} else {
-			key = singular;
-			args.defaultValue = singular;
-		}
-		return i18n.t(key, args);
+	ngettext() {
+		return ngettext.apply(null, this._filterT([...arguments]));
 	}
 	/**
 	 * Translates a text using a specific context.
@@ -184,14 +190,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @param {string} key Text to translate.
 	 * @return {string} Translated text.
 	 */
-	pgettext(context, key) {
-		this._ensureInitialized();
-
-		const args = this._argumentsToObject(arguments, 2);
-		args.context = context;
-		// Don't make i18next fetch more translations
-		delete args.count;
-		return i18n.t(key, args);
+	pgettext() {
+		return pgettext.apply(null, this._filterT([...arguments]));
 	}
 	/**
 	 * Translates a text in singular or plural with a specific context.
@@ -212,28 +212,8 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
 	 * @param {string} plural Plural text variant.
 	 * @return {string} Translated text.
 	 */
-	npgettext(context, singular, plural) {
-		this._ensureInitialized();
-
-		const
-			args = this._argumentsToObject(arguments, 3),
-			n = args.count,
-			contextKeyPart = context
-				? '_' + context
-				: '';
-		let key = singular;
-
-		delete args.count;
-
-		if (i18n.pluralExtensions.needsPlural(i18n.lng(), n)) {
-			args.defaultValue = plural;
-			key = i18n.options.ns.defaultNs + i18n.options.nsseparator + singular + contextKeyPart + i18n.options.pluralSuffix;
-		} else {
-			key = singular;
-			args.context = context;
-		}
-
-		return i18n.t(key, args);
+	npgettext() {
+		return npgettext.apply(null, this._filterT([...arguments]));
 	}
 });
 
@@ -251,9 +231,6 @@ export const translatable = dedupingMixin(baseClass => class extends baseClass {
  * @demo demo/index.html
  */
 class CosmozI18Next extends PolymerElement {
-	static get is() {
-		return 'cosmoz-i18next';
-	}
 	static get properties() { // eslint-disable-line max-lines-per-function
 		return {
 			domain: {
@@ -278,9 +255,8 @@ class CosmozI18Next extends PolymerElement {
 			},
 			translations: {
 				type: Object,
-				observer: function () { // eslint-disable-line object-shorthand
-					i18n.removeResourceBundle(this.language, this.namespace);
-					i18n.addResources(this.language, this.namespace, this.translations);
+				observer() {
+					loadTranslations(this.language, this.namespace, this.translations);
 					translationElements.forEach(element => element.set('t', {}));
 				}
 			},
@@ -306,4 +282,13 @@ class CosmozI18Next extends PolymerElement {
 	}
 }
 
-customElements.define(CosmozI18Next.is, CosmozI18Next);
+customElements.define('cosmoz-i18next', CosmozI18Next);
+
+export {
+	gettext,
+	gettext as _,
+	ngettext,
+	pgettext,
+	npgettext,
+	loadTranslations
+};
