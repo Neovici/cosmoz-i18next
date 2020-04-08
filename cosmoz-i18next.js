@@ -86,8 +86,8 @@ const
 		return i18n.t(key, args);
 	},
 	loadTranslations = (lang, namespace, translations) => {
-		i18n.removeResourceBundle(lang, namespace);
-		i18n.addResources(lang, namespace, translations);
+		i18n.init({ resources: {}});
+		i18n.addResourceBundle(lang, namespace, translations);
 	};
 
 export const translatable = dedupingMixin(baseClass => class extends baseClass {
@@ -257,8 +257,11 @@ class CosmozI18Next extends PolymerElement {
 			},
 			translations: {
 				type: Object,
-				observer() {
-					loadTranslations(this.language, this.namespace, this.translations);
+				observer(newTranslations) {
+					if (newTranslations == null) {
+						return;
+					}
+					loadTranslations(this.language, this.namespace, newTranslations);
 					translationElements.forEach(element => element.set('t', {}));
 				}
 			},
