@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import {
-	assert, fixture, html
+	assert, fixture, html, aTimeout
 } from '@open-wc/testing';
 
 import {
@@ -26,13 +26,26 @@ suite('cosmoz-i18next', () => {
 		assert.equal(element.keySeparator, '.');
 		assert.equal(element.nsSeparator, ':');
 	});
+
+	test('set translations', async () => {
+		assert.equal(_('Hello __0__', 'John Doe'), 'Hello John Doe');
+		element.translations = {
+			'Hello __0__': 'Hej __0__'
+		};
+		await aTimeout();
+		assert.equal(_('Hello __0__', 'John Doe'), 'Hej John Doe');
+		element.translations = null; // doesn't throw away translations
+		assert.equal(_('Hello __0__', 'John Doe'), 'Hej John Doe');
+	});
 });
 
 suite('core', () => {
 
+	const lng = 'sv',
+		namespace = 'translation';
+
 	suiteSetup(async () => {
-		const lng = 'sv',
-			translations = await fetch('/base/test/translations.json').then(r => r.json());
+		const translations = await fetch('/base/test/translations.json').then(r => r.json());
 		await i18n.init({
 			interpolation: {
 				prefix: '{',
@@ -40,7 +53,7 @@ suite('core', () => {
 			},
 			lng
 		});
-		loadTranslations(lng, 'translation', translations);
+		loadTranslations(lng, namespace, translations);
 	});
 
 	test('init', () => {
@@ -73,6 +86,14 @@ suite('core', () => {
 		assert.equal(npgettext('supplier', 'Cancel {0} invoice', 'Cancel {0} invoices', 0), 'Makulera 0 leverantörsfakturor');
 		assert.equal(npgettext('supplier', 'Cancel {0} invoice', 'Cancel {0} invoices', 1), 'Makulera en leverantörsfaktura');
 		assert.equal(npgettext('supplier', 'Cancel {0} invoice', 'Cancel {0} invoices', 2), 'Makulera 2 leverantörsfakturor');
+	});
+
+	test('update translations', () => {
+		loadTranslations(lng, namespace, {
+			'Cancel {0} invoice': 'Cancelar {0} factura'
+		});
+		assert.equal(_('Cancel {0} invoice', 1), 'Cancelar 1 factura');
+		assert.equal(npgettext('supplier', 'Cancel {0} invoice', 'Cancel {0} invoices', 2), 'Cancel 2 invoices');
 	});
 });
 
