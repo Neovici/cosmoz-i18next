@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/neovici/cosmoz-i18next/compare/v3.1.1...v3.2.0) (2020-04-16)
+
+
+### Features
+
+* allow passing i18next settings to the i18n.t call ([e1d6938](https://github.com/neovici/cosmoz-i18next/commit/e1d6938c15ae81d8dbf69e3987cb8447cac3e441))
+
 ## [3.1.1](https://github.com/neovici/cosmoz-i18next/compare/v3.1.0...v3.1.1) (2020-04-09)
 
 
