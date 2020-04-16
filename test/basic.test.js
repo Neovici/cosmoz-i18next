@@ -64,6 +64,10 @@ suite('core', () => {
 		assert.equal(_('Hello {0}', 'John Doe'), 'Hej John Doe');
 		assert.equal(_('Hello {0}', 'John Doe'), 'Hej John Doe');
 		assert.equal(_('Hello {0}', 'John Doe'), gettext('Hello {0}', 'John Doe'));
+		assert.equal(
+			_('Hello {0}', '<a href="mailto:john@doe.com">John Doe</a>', { interpolation: { escapeValue: false }}),
+			'Hej <a href="mailto:john@doe.com">John Doe</a>'
+		);
 	});
 
 	test('ngettext / plural', () => {
