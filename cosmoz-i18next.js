@@ -293,6 +293,7 @@ class CosmozI18Next extends PolymerElement {
 		super.ready();
 		i18n.init({
 			interpolation: {
+				escapeValue: false,
 				prefix: this.interpolationPrefix,
 				suffix: this.interpolationSuffix
 			},
