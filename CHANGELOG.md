@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/neovici/cosmoz-i18next/compare/v3.2.0...v3.2.1) (2020-04-17)
+
+
+### Bug Fixes
+
+* disable escape values ([3836b22](https://github.com/neovici/cosmoz-i18next/commit/3836b22b5732f8b77ae343a94296872e64b3cb53))
+
 # [3.2.0](https://github.com/neovici/cosmoz-i18next/compare/v3.1.1...v3.2.0) (2020-04-16)
 
 
