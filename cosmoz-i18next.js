@@ -297,9 +297,9 @@ class CosmozI18Next extends PolymerElement {
 				prefix: this.interpolationPrefix,
 				suffix: this.interpolationSuffix
 			},
-			keyseparator: this.keySeparator,
+			keySeparator: this.keySeparator,
 			lng: this.language,
-			nsseparator: this.nsSeparator,
+			nsSeparator: this.nsSeparator,
 			resStore: {}
 		});
 	}
