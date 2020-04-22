@@ -10,7 +10,9 @@ const
 			// even when there is no <i18next> element in the page.
 			i18n.init({
 				lng: 'en',
-				resStore: { en: {} },
+				resStore: {
+					en: {}
+				},
 				fallbackLng: false
 			});
 		}
@@ -94,7 +96,9 @@ const
 		return i18n.t(key, args);
 	},
 	loadTranslations = (lang, namespace, translations) => {
-		i18n.init({ resources: {} });
+		i18n.init({
+			resources: {}
+		});
 		i18n.addResourceBundle(lang, namespace, translations);
 	},
 	translatable = dedupingMixin(baseClass => class extends baseClass {
