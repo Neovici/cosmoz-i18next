@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/neovici/cosmoz-i18next/compare/v3.2.1...v3.2.2) (2020-04-22)
+
+
+### Bug Fixes
+
+* correct keyseparator and nsseparator property namings ([#57](https://github.com/neovici/cosmoz-i18next/issues/57)) ([3484b79](https://github.com/neovici/cosmoz-i18next/commit/3484b790aa6b8cb78e5dbf1cac177cd5fc3ffe23))
+
 ## [3.2.1](https://github.com/neovici/cosmoz-i18next/compare/v3.2.0...v3.2.1) (2020-04-17)
 
 
