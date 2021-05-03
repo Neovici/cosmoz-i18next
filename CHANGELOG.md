@@ -1,3 +1,10 @@
+## [3.2.3](https://github.com/neovici/cosmoz-i18next/compare/v3.2.2...v3.2.3) (2021-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update i18next ([7bd800d](https://github.com/neovici/cosmoz-i18next/commit/7bd800d295dc886828760c3db8bd7ed1edc89884))
+
 ## [3.2.2](https://github.com/neovici/cosmoz-i18next/compare/v3.2.1...v3.2.2) (2020-04-22)
 
 

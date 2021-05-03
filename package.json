@@ -1,6 +1,6 @@
 {
 	"name": "@neovici/cosmoz-i18next",
-	"version": "3.2.2",
+	"version": "3.2.3",
 	"description": "A behavior extending the i18next internationalization-framework by providing useful translation functionalities.",
 	"keywords": [
 		"polymer",
