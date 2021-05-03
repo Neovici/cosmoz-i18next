@@ -45,7 +45,7 @@ suite('core', () => {
 		namespace = 'translation';
 
 	suiteSetup(async () => {
-		const translations = await fetch('/base/test/translations.json').then(r => r.json());
+		const translations = await fetch('/test/translations.json').then(r => r.json());
 		await i18n.init({
 			interpolation: {
 				prefix: '{',
