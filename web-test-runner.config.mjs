@@ -11,10 +11,10 @@ export default {
 		reportDir: 'coverage',
 		exclude: ['test/**/*.js'],
 		threshold: {
-			statements: 70,
-			branches: 70,
-			functions: 50,
-			lines: 70
+			statements: 30,
+			branches: 30,
+			functions: 30,
+			lines: 30
 		}
 	},
 	testFramework: {
