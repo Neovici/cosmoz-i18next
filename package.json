@@ -55,7 +55,7 @@
 	},
 	"dependencies": {
 		"@polymer/polymer": "^3.3.1",
-		"i18next": "^20.2.4"
+		"i18next": "^20.3.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^12.1.4",
@@ -74,7 +74,7 @@
 		"@web/dev-server": "^0.1.17",
 		"@web/test-runner": "^0.13.4",
 		"@web/test-runner-selenium": "^0.5.1",
-		"eslint": "^7.26.0",
+		"eslint": "^7.27.0",
 		"eslint-plugin-mocha": "^8.1.0",
 		"husky": "^4.2.5",
 		"lit-html": "^1.4.1",
