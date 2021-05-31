@@ -55,7 +55,7 @@
 	},
 	"dependencies": {
 		"@polymer/polymer": "^3.3.1",
-		"i18next": "^20.3.0"
+		"i18next": "^20.3.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^12.1.4",
@@ -72,14 +72,14 @@
 		"@semantic-release/changelog": "^5.0.1",
 		"@semantic-release/git": "^9.0.0",
 		"@web/dev-server": "^0.1.17",
-		"@web/test-runner": "^0.13.4",
+		"@web/test-runner": "^0.13.5",
 		"@web/test-runner-selenium": "^0.5.1",
 		"eslint": "^7.27.0",
-		"eslint-plugin-mocha": "^8.1.0",
+		"eslint-plugin-mocha": "^8.2.0",
 		"husky": "^4.2.5",
 		"lit-html": "^1.4.1",
 		"semantic-release": "^17.4.3",
-		"sinon": "^10.0.0",
+		"sinon": "^10.0.1",
 		"web-animations-js": "^2.3.0"
 	}
 }
