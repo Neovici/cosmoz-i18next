@@ -78,7 +78,7 @@
 		"eslint-plugin-mocha": "^8.1.0",
 		"husky": "^4.2.5",
 		"lit-html": "^1.4.1",
-		"semantic-release": "^17.4.3",
+		"semantic-release": "^19.0.3",
 		"sinon": "^10.0.0",
 		"web-animations-js": "^2.3.0"
 	}
