@@ -253,6 +253,10 @@ const
 class CosmozI18Next extends PolymerElement {
 	static get properties() { // eslint-disable-line max-lines-per-function
 		return {
+			compatibilityJSON: {
+				type: String,
+				value: 'v3',
+			},
 			domain: {
 				type: String,
 				value: 'messages'
@@ -296,6 +300,7 @@ class CosmozI18Next extends PolymerElement {
 	ready() {
 		super.ready();
 		i18n.init({
+			compatibilityJSON: this.compatibilityJSON,
 			interpolation: {
 				escapeValue: false,
 				prefix: this.interpolationPrefix,
