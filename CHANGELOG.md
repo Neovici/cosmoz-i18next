@@ -1,3 +1,11 @@
+# [3.3.0](https://github.com/neovici/cosmoz-i18next/compare/v3.2.3...v3.3.0) (2022-11-04)
+
+
+### Features
+
+* **i18n:** json format v3 ([4b1867a](https://github.com/neovici/cosmoz-i18next/commit/4b1867aa994a1518e97bc907d3efcec2334bc7f2))
+* update i18next ([4b89a85](https://github.com/neovici/cosmoz-i18next/commit/4b89a85a3463988b499bda9fe9f33aabd85393db))
+
 ## [3.2.3](https://github.com/neovici/cosmoz-i18next/compare/v3.2.2...v3.2.3) (2021-05-03)
 
 
