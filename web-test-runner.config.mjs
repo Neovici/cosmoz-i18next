@@ -1,35 +1,6 @@
-import {
-	chromeLauncher, defaultReporter
-} from '@web/test-runner';
-import { seleniumLauncher } from '@web/test-runner-selenium';
-import webdriver from 'selenium-webdriver';
-import firefox from 'selenium-webdriver/firefox.js';
+import cfg from '@neovici/cfg/web/test-runner.mjs';
 
 export default {
-	nodeResolve: true,
-	coverageConfig: {
-		reportDir: 'coverage',
-		exclude: ['test/**/*.js'],
-		threshold: {
-			statements: 30,
-			branches: 30,
-			functions: 30,
-			lines: 30
-		}
-	},
-	testFramework: {
-		config: {
-			ui: 'tdd'
-		}
-	},
-	files: [
-		'test/**/*test.js'
-	],
-	browsers: [
-		chromeLauncher(),
-		seleniumLauncher({
-			driverBuilder: new webdriver.Builder().forBrowser('firefox').setFirefoxOptions(new firefox.Options().headless())
-		})
-	]
-
+	...cfg,
+	testFramework: { config: { ui: 'bdd' }},
 };
