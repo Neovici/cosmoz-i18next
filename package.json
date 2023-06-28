@@ -55,7 +55,7 @@
 	},
 	"dependencies": {
 		"@polymer/polymer": "^3.3.1",
-		"i18next": "^22.0.0"
+		"i18next": "^23.0.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.0",
@@ -71,11 +71,11 @@
 		"@polymer/paper-listbox": "^3.0.0",
 		"@semantic-release/changelog": "^6.0.0",
 		"@semantic-release/git": "^10.0.0",
-		"@web/dev-server": "^0.1.17",
+		"@web/dev-server": "^0.2.0",
 		"husky": "^4.2.5",
 		"lit-html": "^2.4.0",
-		"semantic-release": "^19.0.0",
-		"sinon": "^14.0.0",
+		"semantic-release": "^21.0.0",
+		"sinon": "^15.0.0",
 		"web-animations-js": "^2.3.0"
 	}
 }
