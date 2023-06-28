@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/neovici/cosmoz-i18next/compare/v3.3.0...v3.4.0) (2023-06-28)
+
+
+### Features
+
+* **i18next:** upgrade i18next ([fb137ae](https://github.com/neovici/cosmoz-i18next/commit/fb137ae3b0fa973ec9865a6573cfc17c36c15dfa))
+
 # [3.3.0](https://github.com/neovici/cosmoz-i18next/compare/v3.2.3...v3.3.0) (2022-11-04)
 
 
