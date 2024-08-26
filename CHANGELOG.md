@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/neovici/cosmoz-i18next/compare/v3.4.0...v3.4.1) (2024-08-26)
+
+
+### Bug Fixes
+
+* mark _ as deprecated ([67ef777](https://github.com/neovici/cosmoz-i18next/commit/67ef777aed2e04eb4be35513c58bb294ee046d8c))
+
 # [3.4.0](https://github.com/neovici/cosmoz-i18next/compare/v3.3.0...v3.4.0) (2023-06-28)
 
 
