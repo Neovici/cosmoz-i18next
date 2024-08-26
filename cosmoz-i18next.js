@@ -40,6 +40,11 @@ const
 			return object;
 		}, {});
 	},
+	/**
+	 * @param {string} key The translation key
+	 * @returns {string} The translated string
+	 * @deprecated Use the `t` function from `i18next`
+	 */
 	gettext = function (key) {
 		ensureInitialized();
 		const args = argumentsToObject([...arguments].slice(1));
