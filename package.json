@@ -1,81 +1,81 @@
 {
-	"name": "@neovici/cosmoz-i18next",
-	"version": "3.4.1",
-	"description": "A behavior extending the i18next internationalization-framework by providing useful translation functionalities.",
-	"keywords": [
-		"polymer",
-		"web-components"
-	],
-	"homepage": "https://github.com/neovici/cosmoz-i18next#readme",
-	"bugs": {
-		"url": "https://github.com/neovici/cosmoz-i18next/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/neovici/cosmoz-i18next.git"
-	},
-	"license": "Apache-2.0",
-	"author": "Neovici Development",
-	"main": "cosmoz-i18next.js",
-	"directories": {
-		"test": "test"
-	},
-	"files": [
-		"cosmoz-*.js"
-	],
-	"scripts": {
-		"lint": "eslint --cache --ext .js .",
-		"start": "wds",
-		"test": "wtr --coverage",
-		"test:watch": "wtr --watch"
-	},
-	"release": {
-		"plugins": [
-			"@semantic-release/commit-analyzer",
-			"@semantic-release/release-notes-generator",
-			"@semantic-release/changelog",
-			"@semantic-release/github",
-			"@semantic-release/npm",
-			"@semantic-release/git"
-		],
-		"branch": "master"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		]
-	},
-	"husky": {
-		"hooks": {
-			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-		}
-	},
-	"dependencies": {
-		"@polymer/polymer": "^3.3.1",
-		"i18next": "^23.0.0"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^17.0.0",
-		"@commitlint/config-conventional": "^17.0.0",
-		"@neovici/cfg": "^1.18.0",
-		"@open-wc/testing": "^3.1.0",
-		"@polymer/iron-component-page": "^4.0.0",
-		"@polymer/iron-demo-helpers": "^3.0.0",
-		"@polymer/iron-icon": "^3.0.0",
-		"@polymer/iron-icons": "^3.0.0",
-		"@polymer/paper-dropdown-menu": "^3.1.0",
-		"@polymer/paper-item": "^3.0.0",
-		"@polymer/paper-listbox": "^3.0.0",
-		"@semantic-release/changelog": "^6.0.0",
-		"@semantic-release/git": "^10.0.0",
-		"@web/dev-server": "^0.2.0",
-		"husky": "^4.2.5",
-		"lit-html": "^2.4.0",
-		"semantic-release": "^21.0.0",
-		"sinon": "^15.0.0",
-		"web-animations-js": "^2.3.0"
-	}
+  "name": "@neovici/cosmoz-i18next",
+  "version": "3.4.1",
+  "description": "A behavior extending the i18next internationalization-framework by providing useful translation functionalities.",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "homepage": "https://github.com/neovici/cosmoz-i18next#readme",
+  "bugs": {
+    "url": "https://github.com/neovici/cosmoz-i18next/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neovici/cosmoz-i18next.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Neovici Development",
+  "main": "cosmoz-i18next.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "cosmoz-*.js"
+  ],
+  "scripts": {
+    "lint": "eslint --cache --ext .js .",
+    "start": "wds",
+    "test": "wtr --coverage",
+    "test:watch": "wtr --watch"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "branch": "master"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "@polymer/polymer": "^3.3.1",
+    "i18next": "^23.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@neovici/cfg": "^1.53.0",
+    "@open-wc/testing": "^3.1.0",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@polymer/iron-icon": "^3.0.0",
+    "@polymer/iron-icons": "^3.0.0",
+    "@polymer/paper-dropdown-menu": "^3.1.0",
+    "@polymer/paper-item": "^3.0.0",
+    "@polymer/paper-listbox": "^3.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@web/dev-server": "^0.2.0",
+    "husky": "^4.2.5",
+    "lit-html": "^2.4.0",
+    "semantic-release": "^21.0.0",
+    "sinon": "^15.0.0",
+    "web-animations-js": "^2.3.0"
+  }
 }
