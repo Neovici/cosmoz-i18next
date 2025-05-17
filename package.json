@@ -43,23 +43,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "dependencies": {
     "@polymer/polymer": "^3.3.1",
     "i18next": "^23.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
-    "@commitlint/config-conventional": "^17.0.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@neovici/cfg": "^1.53.0",
     "@open-wc/testing": "^3.1.0",
     "@polymer/iron-component-page": "^4.0.0",
