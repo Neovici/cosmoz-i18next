@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/neovici/cosmoz-i18next/compare/v3.4.1...v3.5.0) (2025-07-21)
+
+
+### Features
+
+* new automerge workflow ([33f7640](https://github.com/neovici/cosmoz-i18next/commit/33f7640da4be3a28fbf45d4e36ef9b9693d15e4d))
+
 ## [3.4.1](https://github.com/neovici/cosmoz-i18next/compare/v3.4.0...v3.4.1) (2024-08-26)
 
 
