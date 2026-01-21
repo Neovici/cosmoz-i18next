@@ -64,7 +64,7 @@
     "@web/dev-server": "^0.2.0",
     "husky": "^4.2.5",
     "lit-html": "^2.4.0",
-    "semantic-release": "^21.0.0",
+    "semantic-release": "^25.0.2",
     "sinon": "^15.0.0",
     "web-animations-js": "^2.3.0"
   }
