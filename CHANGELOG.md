@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/Neovici/cosmoz-i18next/compare/v3.5.1...v3.5.2) (2026-01-28)
+
+
+### Bug Fixes
+
+* repository URL case sensitivity ([107e61e](https://github.com/Neovici/cosmoz-i18next/commit/107e61e5325d772d9f4da86511ae75aa31a94216))
+
 ## [3.5.1](https://github.com/neovici/cosmoz-i18next/compare/v3.5.0...v3.5.1) (2025-08-04)
 
 
