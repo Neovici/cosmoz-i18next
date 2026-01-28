@@ -256,7 +256,7 @@ const
  * @demo demo/index.html
  */
 class CosmozI18Next extends PolymerElement {
-	static get properties() { // eslint-disable-line max-lines-per-function
+	static get properties() {  
 		return {
 			compatibilityJSON: {
 				type: String,

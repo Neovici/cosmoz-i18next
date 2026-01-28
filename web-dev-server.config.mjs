@@ -1,4 +1,3 @@
-/* eslint-env node */
 export default {
 	appIndex: 'demo/index.html',
 	open: true,

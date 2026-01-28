@@ -16,7 +16,7 @@ class XTranslatable extends translatable(PolymerElement) {
 			}
 		};
 	}
-	// eslint-disable-next-line max-lines-per-function
+	 
 	static get template() {
 		return html`
             <h3>Simple tests</h3>
