@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/Neovici/cosmoz-i18next/compare/v3.5.2...v4.0.0) (2026-05-07)
+
+
+* feat!: upgrade i18next to >=25.0.0 <27.0.0 and v4 JSON format ([#113](https://github.com/Neovici/cosmoz-i18next/issues/113)) ([6a6e00a](https://github.com/Neovici/cosmoz-i18next/commit/6a6e00aa131b1a4d6158eb5a9fc4f62f0bea36df))
+
+
+### BREAKING CHANGES
+
+* compatibilityJSON removed from i18n.init(), plural
+format changed from v3 (_plural suffix) to v4 (_one/_other suffixes).
+Translation files must be migrated to v4 format.
+
 ## [3.5.2](https://github.com/Neovici/cosmoz-i18next/compare/v3.5.1...v3.5.2) (2026-01-28)
 
 
