@@ -61,11 +61,11 @@ const
 		delete args.count;
 
 		const pluralSuffix = i18n.services.pluralResolver.getSuffix(i18n.language, n);
-		if (pluralSuffix) {
+		if (pluralSuffix && pluralSuffix !== '_one') {
 			args.defaultValue = plural;
 			key = singular + pluralSuffix;
 		} else {
-			key = singular;
+			key = singular + (pluralSuffix || '');
 			args.defaultValue = singular;
 		}
 		return i18n.t(key, args);
@@ -90,11 +90,12 @@ const
 		delete args.count;
 
 		const pluralSuffix = i18n.services.pluralResolver.getSuffix(i18n.language, n);
-		if (pluralSuffix) {
+		if (pluralSuffix && pluralSuffix !== '_one') {
 			args.defaultValue = plural;
 			key = singular + contextKeyPart + pluralSuffix;
 		} else {
-			key = singular;
+			key = singular + contextKeyPart + (pluralSuffix || '');
+			args.defaultValue = singular;
 			args.context = context;
 		}
 
@@ -258,10 +259,6 @@ const
 class CosmozI18Next extends PolymerElement {
 	static get properties() {  
 		return {
-			compatibilityJSON: {
-				type: String,
-				value: 'v3',
-			},
 			domain: {
 				type: String,
 				value: 'messages'
@@ -305,7 +302,6 @@ class CosmozI18Next extends PolymerElement {
 	ready() {
 		super.ready();
 		i18n.init({
-			compatibilityJSON: this.compatibilityJSON,
 			interpolation: {
 				escapeValue: false,
 				prefix: this.interpolationPrefix,
